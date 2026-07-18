@@ -1,0 +1,28 @@
+/* ===== Header ===== */
+.app-header{
+  position:fixed;top:0;left:50%;transform:translateX(-50%);
+  width:100%;max-width:var(--max-width);
+  height:var(--header-height);
+  display:flex;align-items:center;gap:var(--space-2);
+  padding:0 var(--space-3);
+  background:var(--color-surface);
+  border-bottom:1px solid var(--color-outline-variant);
+  z-index:var(--z-header);
+}
+.app-header__title{font-size:17px;flex:1;}
+.app-header__status{display:flex;align-items:center;gap:var(--space-2);}
+.icon-btn{
+  width:40px;height:40px;border-radius:var(--radius-pill);
+  display:inline-flex;align-items:center;justify-content:center;
+  color:var(--color-on-surface-variant);position:relative;
+  transition:background var(--motion-fast);
+}
+.icon-btn:hover,.icon-btn:active{background:var(--color-surface-container);}
+.status-dot{width:9px;height:9px;border-radius:50%;background:var(--color-danger);}
+.status-dot[data-state="online"]{background:var(--color-success);}
+.badge{
+  position:absolute;top:2px;right:2px;min-width:16px;height:16px;padding:0 3px;
+  background:var(--color-secondary);color:var(--color-on-secondary);
+  font-size:10px;font-weight:700;border-radius:var(--radius-pill);
+  display:flex;align-items:center;justify-content:center;
+}
