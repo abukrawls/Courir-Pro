@@ -1,0 +1,103 @@
+/* ===== Courier Pro — Design Tokens (MD3-inspired) ===== */
+:root{
+  /* Brand */
+  --color-primary:#2E5AAC;
+  --color-primary-dark:#1E3F80;
+  --color-primary-container:#DCE6FF;
+  --color-on-primary:#FFFFFF;
+  --color-on-primary-container:#0B2C63;
+
+  --color-secondary:#FF6B35;
+  --color-secondary-dark:#E24E17;
+  --color-secondary-container:#FFE4D9;
+  --color-on-secondary:#FFFFFF;
+  --color-on-secondary-container:#7A2A05;
+
+  /* Surface */
+  --color-surface:#FFFFFF;
+  --color-surface-dim:#F4F6FA;
+  --color-surface-container:#EEF1F7;
+  --color-surface-container-high:#E4E9F2;
+  --color-on-surface:#1A1C1E;
+  --color-on-surface-variant:#44474A;
+  --color-outline:#C4C7CE;
+  --color-outline-variant:#E1E3E8;
+
+  /* Status semantik */
+  --color-success:#1E8E3E;
+  --color-success-container:#DCF5E3;
+  --color-warning:#B9770E;
+  --color-warning-container:#FDECC8;
+  --color-danger:#D93025;
+  --color-danger-container:#FBE2DF;
+  --color-info:#1967D2;
+  --color-info-container:#DCE8FB;
+
+  /* Elevation (shadow halus) */
+  --elevation-1:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.08);
+  --elevation-2:0 2px 6px rgba(16,24,40,.08),0 4px 12px rgba(16,24,40,.06);
+  --elevation-3:0 8px 24px rgba(16,24,40,.12);
+
+  /* Radius */
+  --radius-sm:8px;
+  --radius-md:14px;
+  --radius-lg:20px;
+  --radius-pill:999px;
+
+  /* Spacing scale */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px;
+  --space-5:20px; --space-6:24px; --space-8:32px; --space-10:40px;
+
+  /* Type */
+  --font-display:'Plus Jakarta Sans',system-ui,sans-serif;
+  --font-body:'Inter',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+
+  /* Layout */
+  --header-height:56px;
+  --bottom-nav-height:64px;
+  --max-width:520px;
+  --z-header:100; --z-drawer:200; --z-modal:300; --z-toast:400; --z-loader:500;
+
+  --motion-fast:120ms; --motion-base:220ms; --motion-slow:360ms;
+  --ease-standard:cubic-bezier(.2,0,0,1);
+}
+
+[data-theme="dark"]{
+  --color-primary:#9DB8F2;
+  --color-primary-dark:#B8CBF5;
+  --color-primary-container:#1E3F80;
+  --color-on-primary:#0B2C63;
+  --color-on-primary-container:#DCE6FF;
+
+  --color-secondary:#FFAB85;
+  --color-secondary-container:#7A2A05;
+  --color-on-secondary:#3D1300;
+  --color-on-secondary-container:#FFE4D9;
+
+  --color-surface:#131417;
+  --color-surface-dim:#0E0F11;
+  --color-surface-container:#1C1E22;
+  --color-surface-container-high:#26282D;
+  --color-on-surface:#E4E6EA;
+  --color-on-surface-variant:#C4C7CE;
+  --color-outline:#3E4046;
+  --color-outline-variant:#2A2C31;
+
+  --color-success:#7FDB9A;
+  --color-success-container:#0F3D1F;
+  --color-warning:#F5C563;
+  --color-warning-container:#4A3403;
+  --color-danger:#F2A79E;
+  --color-danger-container:#4A140D;
+  --color-info:#9CC2F5;
+  --color-info-container:#0D2A52;
+
+  --elevation-1:0 1px 3px rgba(0,0,0,.4);
+  --elevation-2:0 4px 12px rgba(0,0,0,.45);
+  --elevation-3:0 12px 28px rgba(0,0,0,.55);
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;}
+}

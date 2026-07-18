@@ -1,0 +1,10 @@
+/* ===== Typography ===== */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap');
+
+body{font-size:15px;line-height:1.5;}
+h1,h2,h3{font-family:var(--font-display);color:var(--color-on-surface);line-height:1.25;font-weight:700;}
+h1{font-size:22px;}
+h2{font-size:17px;margin-bottom:var(--space-3);}
+h3{font-size:15px;}
+p{color:var(--color-on-surface-variant);}
+.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums;letter-spacing:.02em;}
