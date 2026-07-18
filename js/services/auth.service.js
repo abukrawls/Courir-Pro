@@ -29,7 +29,23 @@ const AuthService = (() => {
     if (SUPABASE_CONFIGURED && supabaseClient) {
       const { data, error } = await supabaseClient.auth.signInWithPassword({ email: username, password });
       if (error) throw new Error('Login gagal: periksa kembali email/kata sandi Anda.');
-      const user = { id: data.user.id, name: data.user.user_metadata?.name || username, username, role, courierId: data.user.id.slice(0, 8) };
+
+      const { data: profile, error: profileError } = await supabaseClient
+        .from('users').select('*').eq('id', data.user.id).single();
+      if (profileError || !profile) {
+        await supabaseClient.auth.signOut();
+        throw new Error('Akun ditemukan tapi profil belum terdaftar di tabel users. Hubungi admin.');
+      }
+      if (profile.role !== role) {
+        await supabaseClient.auth.signOut();
+        throw new Error(`Akun ini terdaftar sebagai ${profile.role}, bukan ${role}. Pilih peran yang sesuai.`);
+      }
+
+      const user = {
+        id: profile.id, username: profile.username, name: profile.name, role: profile.role,
+        courierId: profile.courier_id, rating: profile.rating, dailyTarget: profile.daily_target,
+        online: profile.online, avatar: profile.avatar,
+      };
       await DB.put(STORES.USERS, { ...user, synced: true });
       saveSession(user, remember);
       State.set('currentUser', user);
