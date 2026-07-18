@@ -1,12 +1,8 @@
 /* =====================================================================
-   Konfigurasi Supabase
-   GANTI dua nilai di bawah dengan kredensial proyek Supabase kamu:
-   Project Settings -> API -> Project URL & anon public key.
-   Selama masih placeholder, aplikasi otomatis berjalan mode offline-only
-   (semua data tersimpan di IndexedDB, sinkron akan gagal senyap).
+   Konfigurasi Supabase — Project: Courir-Pro
 ===================================================================== */
-const SUPABASE_URL = 'https://YOUR-PROJECT.supabase.co';
-const SUPABASE_ANON_KEY = 'YOUR-SUPABASE-ANON-KEY';
+const SUPABASE_URL = 'https://vbnoighhkmtjwbvchzly.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_wB_8YCMJlFgalWmvVtcF6w_QDBhfle-';
 
 const SUPABASE_CONFIGURED = !SUPABASE_URL.includes('YOUR-PROJECT') && !SUPABASE_ANON_KEY.includes('YOUR-SUPABASE');
 
