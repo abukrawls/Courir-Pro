@@ -1,0 +1,12 @@
+<section class="page page-queue" data-page="queue" aria-labelledby="queue-title">
+  <h1 id="queue-title" class="visually-hidden">Status Antrian</h1>
+  <div class="queue-card card">
+    <p class="queue-card__label">Nomor Antrian</p>
+    <p class="queue-card__number" id="queue-number">-</p>
+    <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="queue-progress-bar">
+      <div class="progress-bar__fill" id="queue-progress-fill" style="width:0%"></div>
+    </div>
+    <p class="queue-card__eta">Estimasi: <span id="queue-eta">-</span></p>
+  </div>
+  <div id="queue-list" class="package-list" aria-live="polite"></div>
+</section>

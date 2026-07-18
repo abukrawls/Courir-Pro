@@ -1,0 +1,47 @@
+<section class="page page-laporan" data-page="laporan" aria-labelledby="laporan-title">
+  <h1 id="laporan-title" class="visually-hidden">Laporan</h1>
+
+  <div class="tabs" role="tablist" aria-label="Periode laporan">
+    <button class="tab is-active" role="tab" aria-selected="true" data-period="harian" type="button">Harian</button>
+    <button class="tab" role="tab" aria-selected="false" data-period="mingguan" type="button">Mingguan</button>
+    <button class="tab" role="tab" aria-selected="false" data-period="bulanan" type="button">Bulanan</button>
+    <button class="tab" role="tab" aria-selected="false" data-period="custom" type="button">Custom</button>
+  </div>
+
+  <div id="laporan-custom-range" class="date-range-picker" hidden>
+    <label class="field">
+      <span class="field__label">Dari</span>
+      <input type="date" id="laporan-date-start">
+    </label>
+    <label class="field">
+      <span class="field__label">Sampai</span>
+      <input type="date" id="laporan-date-end">
+    </label>
+    <button class="btn btn--outline" id="btn-apply-range" type="button">Terapkan</button>
+  </div>
+
+  <div class="dash-stats-grid" id="laporan-summary"></div>
+
+  <div id="laporan-table-wrap" class="table-wrap">
+    <table class="data-table" id="laporan-table">
+      <thead>
+        <tr>
+          <th>Resi</th><th>Nama</th><th>Status</th><th>Tanggal</th><th>Jam</th>
+        </tr>
+      </thead>
+      <tbody id="laporan-table-body"></tbody>
+    </table>
+  </div>
+
+  <div class="laporan-export">
+    <button class="btn btn--outline" id="btn-export-pdf" type="button">
+      <span class="material-icon" aria-hidden="true">picture_as_pdf</span> Export PDF
+    </button>
+    <button class="btn btn--outline" id="btn-export-excel" type="button">
+      <span class="material-icon" aria-hidden="true">grid_on</span> Export Excel
+    </button>
+    <button class="btn btn--outline" id="btn-print-report" type="button">
+      <span class="material-icon" aria-hidden="true">print</span> Print
+    </button>
+  </div>
+</section>

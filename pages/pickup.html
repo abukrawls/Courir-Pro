@@ -1,0 +1,24 @@
+<section class="page page-pickup" data-page="pickup" aria-labelledby="pickup-title">
+  <h1 id="pickup-title" class="visually-hidden">Pickup</h1>
+
+  <div class="tabs" role="tablist" aria-label="Menu pickup">
+    <button class="tab is-active" role="tab" aria-selected="true" data-pickup-tab="list" type="button">Daftar Pickup</button>
+    <button class="tab" role="tab" aria-selected="false" data-pickup-tab="history" type="button">Riwayat Pickup</button>
+  </div>
+
+  <div id="pickup-list-panel" class="tab-panel">
+    <div id="pickup-list" class="package-list" aria-live="polite"></div>
+    <div id="pickup-empty" class="empty-state" hidden>
+      <span class="material-icon" aria-hidden="true">inbox</span>
+      <p>Belum ada jadwal pickup</p>
+    </div>
+  </div>
+
+  <div id="pickup-history-panel" class="tab-panel" hidden>
+    <div id="pickup-history-list" class="package-list" aria-live="polite"></div>
+  </div>
+
+  <button class="fab" id="fab-scan-pickup" type="button" aria-label="Scan pickup">
+    <span class="material-icon" aria-hidden="true">qr_code_scanner</span>
+  </button>
+</section>

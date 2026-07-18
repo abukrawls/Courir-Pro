@@ -1,0 +1,65 @@
+<section class="page page-deliveries" data-page="deliveries" aria-labelledby="deliveries-title">
+  <h1 id="deliveries-title" class="visually-hidden">Daftar Paket</h1>
+
+  <div class="search-bar">
+    <span class="material-icon" aria-hidden="true">search</span>
+    <input type="search" id="input-search-package" placeholder="Cari resi, nama, HP, alamat, status, tanggal...">
+    <button class="icon-btn" id="btn-search-filter" aria-label="Filter pencarian" type="button">
+      <span class="material-icon" aria-hidden="true">tune</span>
+    </button>
+  </div>
+
+  <div class="tabs" role="tablist" aria-label="Status paket" id="delivery-tabs">
+    <button class="tab is-active" role="tab" aria-selected="true" data-status="todo" type="button">To Do</button>
+    <button class="tab" role="tab" aria-selected="false" data-status="in_progress" type="button">Dalam Perjalanan</button>
+    <button class="tab" role="tab" aria-selected="false" data-status="done" type="button">Selesai</button>
+    <button class="tab" role="tab" aria-selected="false" data-status="postponed" type="button">Ditunda</button>
+    <button class="tab" role="tab" aria-selected="false" data-status="failed" type="button">Gagal</button>
+    <button class="tab" role="tab" aria-selected="false" data-status="return" type="button">Return</button>
+    <button class="tab" role="tab" aria-selected="false" data-status="all" type="button">Semua</button>
+  </div>
+
+  <div class="list-toolbar">
+    <span id="delivery-count-label">0 paket</span>
+    <button class="link-btn" id="btn-sort-package" type="button">
+      <span class="material-icon" aria-hidden="true">sort</span> Urutkan
+    </button>
+  </div>
+
+  <div id="delivery-list" class="package-list" aria-live="polite">
+    <!-- Template kartu paket (diisi/diduplikasi oleh controller) -->
+    <template id="tpl-package-card">
+      <article class="package-card" data-package-id="">
+        <div class="package-card__swipe-bg package-card__swipe-bg--left">
+          <span class="material-icon" aria-hidden="true">check_circle</span>
+        </div>
+        <div class="package-card__swipe-bg package-card__swipe-bg--right">
+          <span class="material-icon" aria-hidden="true">cancel</span>
+        </div>
+        <div class="package-card__content">
+          <div class="package-card__top">
+            <span class="package-card__resi" data-field="resi"></span>
+            <span class="badge badge--priority" data-field="prioritas" hidden>Prioritas</span>
+            <span class="badge badge--cod" data-field="cod" hidden>COD</span>
+          </div>
+          <p class="package-card__name" data-field="nama"></p>
+          <p class="package-card__phone" data-field="hp"></p>
+          <p class="package-card__address" data-field="alamat"></p>
+          <div class="package-card__bottom">
+            <span class="status-pill" data-field="status"></span>
+            <span class="package-card__time" data-field="jam"></span>
+          </div>
+        </div>
+      </article>
+    </template>
+  </div>
+
+  <div id="delivery-empty" class="empty-state" hidden>
+    <span class="material-icon" aria-hidden="true">inventory_2</span>
+    <p>Tidak ada paket pada status ini</p>
+  </div>
+
+  <button class="fab" id="fab-scan" type="button" aria-label="Pindai paket">
+    <span class="material-icon" aria-hidden="true">qr_code_scanner</span>
+  </button>
+</section>

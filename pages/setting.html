@@ -1,0 +1,75 @@
+<section class="page page-setting" data-page="setting" aria-labelledby="setting-title">
+  <h1 id="setting-title" class="visually-hidden">Pengaturan</h1>
+
+  <div class="settings-group card">
+    <h2>Tampilan</h2>
+    <div class="settings-row">
+      <span>Mode Gelap</span>
+      <button class="switch" id="switch-dark-mode" role="switch" aria-checked="false" type="button"><span class="switch__thumb"></span></button>
+    </div>
+    <div class="settings-row">
+      <span>Bahasa</span>
+      <select id="select-language">
+        <option value="id">Bahasa Indonesia</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+    <div class="settings-row">
+      <span>Ukuran Font</span>
+      <select id="select-font-size">
+        <option value="small">Kecil</option>
+        <option value="medium" selected>Sedang</option>
+        <option value="large">Besar</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="settings-group card">
+    <h2>Scanner</h2>
+    <div class="settings-row">
+      <span>Auto Focus</span>
+      <button class="switch" id="switch-autofocus" role="switch" aria-checked="true" type="button"><span class="switch__thumb"></span></button>
+    </div>
+    <div class="settings-row">
+      <span>Auto Scan</span>
+      <button class="switch" id="switch-autoscan" role="switch" aria-checked="true" type="button"><span class="switch__thumb"></span></button>
+    </div>
+    <div class="settings-row">
+      <span>Getar saat berhasil</span>
+      <button class="switch" id="switch-vibrate" role="switch" aria-checked="true" type="button"><span class="switch__thumb"></span></button>
+    </div>
+    <div class="settings-row">
+      <span>Suara saat berhasil</span>
+      <button class="switch" id="switch-sound" role="switch" aria-checked="true" type="button"><span class="switch__thumb"></span></button>
+    </div>
+  </div>
+
+  <div class="settings-group card">
+    <h2>Lokasi &amp; Sinkronisasi</h2>
+    <div class="settings-row">
+      <span>Izin Lokasi</span>
+      <span id="setting-gps-status">Belum diizinkan</span>
+    </div>
+    <div class="settings-row">
+      <span>Sinkronisasi Otomatis</span>
+      <button class="switch" id="switch-autosync" role="switch" aria-checked="true" type="button"><span class="switch__thumb"></span></button>
+    </div>
+    <div class="settings-row">
+      <span>Sinkron Terakhir</span>
+      <span id="setting-last-sync">-</span>
+    </div>
+    <button class="btn btn--outline btn--block" id="btn-sync-now" type="button">Sinkron Sekarang</button>
+  </div>
+
+  <div class="settings-group card">
+    <h2>Keamanan</h2>
+    <div class="settings-row">
+      <span>Login Biometrik</span>
+      <button class="switch" id="switch-biometric" role="switch" aria-checked="false" type="button"><span class="switch__thumb"></span></button>
+    </div>
+    <button class="btn btn--outline btn--block" id="btn-change-pin" type="button">Ubah PIN</button>
+  </div>
+
+  <button class="btn btn--danger btn--block" id="btn-logout-setting" type="button">Keluar</button>
+  <p class="app-version">Courier Pro v1.0.0</p>
+</section>

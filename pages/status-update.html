@@ -1,0 +1,84 @@
+<section class="page page-status-update" data-page="status-update" aria-labelledby="status-update-title">
+  <h1 id="status-update-title">Update Status Paket</h1>
+  <p class="status-update__resi">Resi: <span id="su-resi">-</span></p>
+
+  <div class="status-outcome-group" role="radiogroup" aria-label="Hasil pengiriman">
+    <button class="outcome-btn outcome-btn--success" data-outcome="success" type="button">
+      <span class="material-icon" aria-hidden="true">check_circle</span> Paket Berhasil
+    </button>
+    <button class="outcome-btn outcome-btn--failed" data-outcome="failed" type="button">
+      <span class="material-icon" aria-hidden="true">cancel</span> Gagal
+    </button>
+    <button class="outcome-btn outcome-btn--return" data-outcome="return" type="button">
+      <span class="material-icon" aria-hidden="true">keyboard_return</span> Return
+    </button>
+    <button class="outcome-btn outcome-btn--pending" data-outcome="pending" type="button">
+      <span class="material-icon" aria-hidden="true">schedule</span> Pending
+    </button>
+  </div>
+
+  <div id="su-reason-success" class="status-reason" hidden>
+    <p class="field__label">Diterima oleh</p>
+    <select id="su-receiver-type" class="select-block">
+      <option value="sendiri">Penerima sendiri</option>
+      <option value="tetangga">Tetangga</option>
+      <option value="satpam">Satpam</option>
+      <option value="keluarga">Keluarga</option>
+    </select>
+  </div>
+
+  <div id="su-reason-failed" class="status-reason" hidden>
+    <p class="field__label">Alasan gagal</p>
+    <select id="su-fail-reason" class="select-block">
+      <option value="rumah_kosong">Rumah kosong</option>
+      <option value="alamat_salah">Alamat salah</option>
+      <option value="ditolak">Ditolak</option>
+      <option value="tidak_bisa_dihubungi">Tidak bisa dihubungi</option>
+    </select>
+  </div>
+
+  <form id="form-proof" class="proof-form">
+    <div class="field-group">
+      <p class="field__label">Bukti Foto</p>
+      <div class="photo-capture">
+        <button type="button" class="photo-capture__btn" id="btn-camera-capture">
+          <span class="material-icon" aria-hidden="true">photo_camera</span> Ambil Foto
+        </button>
+        <button type="button" class="photo-capture__btn" id="btn-upload-photo">
+          <span class="material-icon" aria-hidden="true">upload</span> Unggah Foto
+        </button>
+        <input type="file" id="input-photo-upload" accept="image/*" multiple capture="environment" hidden>
+      </div>
+      <div id="proof-photo-preview" class="photo-grid"></div>
+    </div>
+
+    <div class="field-group" id="su-signature-group">
+      <p class="field__label">Tanda Tangan Digital</p>
+      <canvas id="signature-pad" class="signature-pad" aria-label="Area tanda tangan"></canvas>
+      <button type="button" class="link-btn" id="btn-clear-signature">Hapus tanda tangan</button>
+    </div>
+
+    <label class="field">
+      <span class="field__label">Nama Penerima</span>
+      <input type="text" id="su-receiver-name" name="receiver_name">
+    </label>
+
+    <label class="field">
+      <span class="field__label">Hubungan dengan Penerima</span>
+      <input type="text" id="su-receiver-relation" name="receiver_relation" placeholder="Contoh: Adik, Rekan kerja">
+    </label>
+
+    <label class="field">
+      <span class="field__label">Catatan</span>
+      <textarea id="su-notes" name="notes" rows="3"></textarea>
+    </label>
+
+    <p class="proof-meta">
+      <span class="material-icon" aria-hidden="true">schedule</span> <span id="su-timestamp">-</span>
+      &nbsp;&middot;&nbsp;
+      <span class="material-icon" aria-hidden="true">location_on</span> <span id="su-gps-coord">Mengambil lokasi...</span>
+    </p>
+
+    <button type="submit" class="btn btn--primary btn--block" id="btn-submit-proof">Simpan Bukti Pengiriman</button>
+  </form>
+</section>

@@ -1,0 +1,48 @@
+<section class="page page-return" data-page="return" aria-labelledby="return-title">
+  <h1 id="return-title" class="visually-hidden">Return</h1>
+
+  <div class="tabs" role="tablist" aria-label="Menu return">
+    <button class="tab is-active" role="tab" aria-selected="true" data-return-tab="list" type="button">Daftar Return</button>
+    <button class="tab" role="tab" aria-selected="false" data-return-tab="scan" type="button">Scan Return</button>
+  </div>
+
+  <div id="return-list-panel" class="tab-panel">
+    <div id="return-list" class="package-list" aria-live="polite"></div>
+    <div id="return-empty" class="empty-state" hidden>
+      <span class="material-icon" aria-hidden="true">assignment_return</span>
+      <p>Tidak ada paket return</p>
+    </div>
+  </div>
+
+  <div id="return-scan-panel" class="tab-panel" hidden>
+    <div class="scanner-viewport">
+      <video id="return-scanner-video" playsinline autoplay muted aria-label="Pratinjau kamera scan return"></video>
+      <div class="scanner-frame" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <form id="form-return-reason" class="return-reason-form" hidden>
+    <p class="return-reason-form__resi">Resi: <span id="return-resi">-</span></p>
+    <label class="field">
+      <span class="field__label">Alasan Return</span>
+      <select id="return-reason" name="reason" required>
+        <option value="">Pilih alasan</option>
+        <option value="alamat_tidak_ditemukan">Alamat tidak ditemukan</option>
+        <option value="penerima_menolak">Penerima menolak</option>
+        <option value="barang_rusak">Barang rusak</option>
+        <option value="permintaan_pengirim">Permintaan pengirim</option>
+        <option value="lainnya">Lainnya</option>
+      </select>
+    </label>
+    <div class="field-group">
+      <p class="field__label">Upload Foto</p>
+      <div class="photo-capture">
+        <button type="button" class="photo-capture__btn" id="btn-return-camera">
+          <span class="material-icon" aria-hidden="true">photo_camera</span> Ambil Foto
+        </button>
+      </div>
+      <div id="return-photo-preview" class="photo-grid"></div>
+    </div>
+    <button type="submit" class="btn btn--primary btn--block">Simpan Return</button>
+  </form>
+</section>

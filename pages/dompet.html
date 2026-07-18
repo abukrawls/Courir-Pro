@@ -1,0 +1,22 @@
+<section class="page page-dompet" data-page="dompet" aria-labelledby="dompet-title">
+  <h1 id="dompet-title" class="visually-hidden">Dompet</h1>
+
+  <div class="wallet-balance card">
+    <p class="wallet-balance__label">Saldo</p>
+    <p class="wallet-balance__value" id="wallet-saldo">Rp 0</p>
+    <div class="wallet-balance__breakdown">
+      <div><span>Bonus</span><strong id="wallet-bonus">Rp 0</strong></div>
+      <div><span>Insentif</span><strong id="wallet-insentif">Rp 0</strong></div>
+      <div><span>COD</span><strong id="wallet-cod">Rp 0</strong></div>
+    </div>
+  </div>
+
+  <div class="dash-section">
+    <h2>Mutasi &amp; Riwayat</h2>
+    <div id="wallet-history" class="timeline" aria-live="polite"></div>
+    <div id="wallet-empty" class="empty-state" hidden>
+      <span class="material-icon" aria-hidden="true">account_balance_wallet</span>
+      <p>Belum ada mutasi</p>
+    </div>
+  </div>
+</section>

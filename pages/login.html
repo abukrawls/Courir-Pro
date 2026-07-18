@@ -1,0 +1,71 @@
+<section class="page page-login" data-page="login" aria-labelledby="login-title">
+  <div class="login-card">
+    <img src="assets/images/logo.svg" alt="Courier Pro" class="login-logo">
+    <h1 id="login-title" class="login-title">Courier Pro</h1>
+    <p class="login-subtitle">Masuk untuk mulai bertugas</p>
+
+    <div class="login-tabs" role="tablist" aria-label="Metode login">
+      <button class="login-tab is-active" role="tab" aria-selected="true" data-method="password" type="button">Kata Sandi</button>
+      <button class="login-tab" role="tab" aria-selected="false" data-method="pin" type="button">PIN</button>
+      <button class="login-tab" role="tab" aria-selected="false" data-method="biometric" type="button">Biometrik</button>
+    </div>
+
+    <form id="form-login-password" class="login-form" novalidate>
+      <label class="field">
+        <span class="field__label">ID Kurir / Email</span>
+        <input type="text" id="input-username" name="username" autocomplete="username" required>
+        <span class="field__error" data-error-for="username" role="alert"></span>
+      </label>
+      <label class="field">
+        <span class="field__label">Kata Sandi</span>
+        <div class="field__password">
+          <input type="password" id="input-password" name="password" autocomplete="current-password" required minlength="6">
+          <button type="button" class="icon-btn" id="btn-toggle-password" aria-label="Tampilkan kata sandi">
+            <span class="material-icon" aria-hidden="true">visibility</span>
+          </button>
+        </div>
+        <span class="field__error" data-error-for="password" role="alert"></span>
+      </label>
+
+      <div class="login-form__row">
+        <label class="checkbox">
+          <input type="checkbox" id="input-remember" name="remember" checked>
+          <span>Ingat saya</span>
+        </label>
+        <button type="button" class="link-btn" id="btn-forgot-password">Lupa kata sandi?</button>
+      </div>
+
+      <label class="field">
+        <span class="field__label">Masuk sebagai</span>
+        <select id="input-role" name="role" required>
+          <option value="">Pilih peran</option>
+          <option value="admin">Admin</option>
+          <option value="supervisor">Supervisor</option>
+          <option value="kurir">Kurir</option>
+        </select>
+      </label>
+
+      <button type="submit" class="btn btn--primary btn--block" id="btn-login-submit">Masuk</button>
+      <p id="login-error" class="login-error" role="alert" hidden></p>
+    </form>
+
+    <form id="form-login-pin" class="login-form" hidden novalidate>
+      <p class="field__label">Masukkan PIN 6 digit</p>
+      <div class="pin-input" role="group" aria-label="Input PIN">
+        <input type="password" inputmode="numeric" maxlength="1" class="pin-digit" data-pin-index="0" aria-label="Digit PIN 1">
+        <input type="password" inputmode="numeric" maxlength="1" class="pin-digit" data-pin-index="1" aria-label="Digit PIN 2">
+        <input type="password" inputmode="numeric" maxlength="1" class="pin-digit" data-pin-index="2" aria-label="Digit PIN 3">
+        <input type="password" inputmode="numeric" maxlength="1" class="pin-digit" data-pin-index="3" aria-label="Digit PIN 4">
+        <input type="password" inputmode="numeric" maxlength="1" class="pin-digit" data-pin-index="4" aria-label="Digit PIN 5">
+        <input type="password" inputmode="numeric" maxlength="1" class="pin-digit" data-pin-index="5" aria-label="Digit PIN 6">
+      </div>
+      <button type="submit" class="btn btn--primary btn--block" id="btn-pin-submit">Masuk dengan PIN</button>
+    </form>
+
+    <button type="button" class="btn btn--outline btn--block" id="btn-login-biometric" hidden>
+      <span class="material-icon" aria-hidden="true">fingerprint</span> Masuk dengan Biometrik
+    </button>
+
+    <p class="login-footer">Courier Pro &copy; <span id="login-year"></span></p>
+  </div>
+</section>

@@ -1,0 +1,41 @@
+<section class="page page-scanner" data-page="scanner" aria-labelledby="scanner-title">
+  <h1 id="scanner-title" class="visually-hidden">Pindai Paket</h1>
+
+  <div class="scanner-viewport">
+    <video id="scanner-video" playsinline autoplay muted aria-label="Pratinjau kamera pemindai"></video>
+    <div class="scanner-frame" aria-hidden="true"></div>
+    <div class="scanner-controls-top">
+      <button class="icon-btn icon-btn--on-video" id="btn-scanner-flash" type="button" aria-pressed="false" aria-label="Nyalakan flash">
+        <span class="material-icon" aria-hidden="true">flash_on</span>
+      </button>
+      <button class="icon-btn icon-btn--on-video" id="btn-scanner-mode" type="button" aria-label="Ganti mode pindai">
+        <span class="material-icon" aria-hidden="true">autorenew</span>
+      </button>
+      <button class="icon-btn icon-btn--on-video" id="btn-scanner-close" type="button" aria-label="Tutup pemindai">
+        <span class="material-icon" aria-hidden="true">close</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="scanner-mode-toggle" role="group" aria-label="Mode pindai">
+    <button class="chip is-active" data-scan-mode="single" type="button">Sekali</button>
+    <button class="chip" data-scan-mode="multi" type="button">Multi</button>
+    <button class="chip" data-scan-mode="continuous" type="button">Berkelanjutan</button>
+  </div>
+
+  <div class="scanner-result" id="scanner-result" aria-live="polite"></div>
+
+  <div id="scanner-multi-list" class="scanner-multi-list" hidden>
+    <p><span id="scanner-multi-count">0</span> resi terpindai</p>
+    <ul id="scanner-multi-items"></ul>
+    <button class="btn btn--primary btn--block" id="btn-scanner-multi-done" type="button">Selesai</button>
+  </div>
+
+  <form class="scanner-manual" id="form-manual-resi">
+    <label class="field">
+      <span class="field__label">Input Manual Nomor Resi</span>
+      <input type="text" id="input-manual-resi" name="resi" autocomplete="off" required>
+    </label>
+    <button type="submit" class="btn btn--outline btn--block">Cari Resi</button>
+  </form>
+</section>

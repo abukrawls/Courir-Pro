@@ -1,0 +1,70 @@
+<section class="page page-dashboard" data-page="dashboard" aria-labelledby="dashboard-title">
+  <h1 id="dashboard-title" class="visually-hidden">Beranda</h1>
+
+  <div class="dash-profile card">
+    <img id="dash-avatar" class="avatar avatar--lg" src="assets/images/avatar-placeholder.svg" alt="">
+    <div class="dash-profile__info">
+      <p id="dash-name" class="dash-profile__name">-</p>
+      <p class="dash-profile__meta">ID: <span id="dash-courier-id">-</span> &middot; <span class="rating"><span class="material-icon" aria-hidden="true">star</span><span id="dash-rating">-</span></span></p>
+    </div>
+    <button class="toggle-online" id="btn-toggle-online" type="button" role="switch" aria-checked="false">
+      <span class="toggle-online__dot"></span>
+      <span id="dash-online-label">Offline</span>
+    </button>
+  </div>
+
+  <div class="dash-status-grid">
+    <div class="status-chip" data-signal="gps">
+      <span class="material-icon" aria-hidden="true">gps_fixed</span>
+      <span id="status-gps-label">GPS aktif</span>
+    </div>
+    <div class="status-chip" data-signal="battery">
+      <span class="material-icon" aria-hidden="true">battery_full</span>
+      <span id="status-battery-label">-%</span>
+    </div>
+    <div class="status-chip" data-signal="internet">
+      <span class="material-icon" aria-hidden="true">wifi</span>
+      <span id="status-internet-label">Online</span>
+    </div>
+  </div>
+
+  <div class="dash-target card">
+    <div class="dash-target__header">
+      <p>Target Hari Ini</p>
+      <p><span id="dash-progress-count">0</span>/<span id="dash-target-count">0</span> paket</p>
+    </div>
+    <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="dash-progress-bar">
+      <div class="progress-bar__fill" id="dash-progress-fill" style="width:0%"></div>
+    </div>
+  </div>
+
+  <div class="dash-stats-grid" id="dash-stats-grid">
+    <div class="stat-card" data-stat="total">
+      <p class="stat-card__value" id="stat-total">0</p>
+      <p class="stat-card__label">Total Pengiriman</p>
+    </div>
+    <div class="stat-card" data-stat="success">
+      <p class="stat-card__value" id="stat-success">0</p>
+      <p class="stat-card__label">Berhasil</p>
+    </div>
+    <div class="stat-card" data-stat="pending">
+      <p class="stat-card__value" id="stat-pending">0</p>
+      <p class="stat-card__label">Pending</p>
+    </div>
+    <div class="stat-card" data-stat="failed">
+      <p class="stat-card__value" id="stat-failed">0</p>
+      <p class="stat-card__label">Gagal</p>
+    </div>
+  </div>
+
+  <div class="dash-section">
+    <div class="dash-section__header">
+      <h2>Paket Prioritas</h2>
+      <button class="link-btn" data-route="deliveries">Lihat semua</button>
+    </div>
+    <div id="dash-priority-list" class="package-list" aria-live="polite">
+      <div class="skeleton skeleton--package-card"></div>
+      <div class="skeleton skeleton--package-card"></div>
+    </div>
+  </div>
+</section>

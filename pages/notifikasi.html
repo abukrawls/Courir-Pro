@@ -1,0 +1,24 @@
+<section class="page page-notifikasi" data-page="notifikasi" aria-labelledby="notifikasi-title">
+  <h1 id="notifikasi-title" class="visually-hidden">Notifikasi</h1>
+  <div class="list-toolbar">
+    <span id="notif-count-label">0 notifikasi</span>
+    <button class="link-btn" id="btn-mark-all-read" type="button">Tandai semua dibaca</button>
+  </div>
+  <div id="notif-list" class="notif-list" aria-live="polite">
+    <template id="tpl-notif-item">
+      <button class="notif-item" type="button" data-notif-id="">
+        <span class="notif-item__dot" data-field="unread"></span>
+        <span class="material-icon notif-item__icon" aria-hidden="true" data-field="icon">notifications</span>
+        <span class="notif-item__body">
+          <span class="notif-item__title" data-field="title"></span>
+          <span class="notif-item__desc" data-field="desc"></span>
+          <span class="notif-item__time" data-field="time"></span>
+        </span>
+      </button>
+    </template>
+  </div>
+  <div id="notif-empty" class="empty-state" hidden>
+    <span class="material-icon" aria-hidden="true">notifications_off</span>
+    <p>Belum ada notifikasi</p>
+  </div>
+</section>

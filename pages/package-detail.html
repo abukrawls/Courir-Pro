@@ -1,0 +1,54 @@
+<section class="page page-package-detail" data-page="package-detail" aria-labelledby="package-detail-title">
+  <h1 id="package-detail-title" class="visually-hidden">Detail Paket</h1>
+
+  <div class="detail-header card">
+    <div class="detail-header__top">
+      <span class="detail-resi" id="detail-resi">-</span>
+      <span class="status-pill" id="detail-status">-</span>
+    </div>
+    <p class="detail-priority" id="detail-priority" hidden>
+      <span class="material-icon" aria-hidden="true">priority_high</span> Prioritas
+    </p>
+  </div>
+
+  <div class="detail-section card">
+    <h2 class="detail-section__title">Penerima</h2>
+    <dl class="detail-list">
+      <div><dt>Nama</dt><dd id="detail-nama">-</dd></div>
+      <div><dt>Telepon</dt><dd id="detail-telepon">-
+        <a id="detail-call" href="tel:" class="icon-btn" aria-label="Telepon penerima"><span class="material-icon" aria-hidden="true">call</span></a>
+        <a id="detail-whatsapp" href="https://wa.me/" class="icon-btn" aria-label="WhatsApp penerima" target="_blank" rel="noopener"><span class="material-icon" aria-hidden="true">chat</span></a>
+      </dd></div>
+      <div><dt>Alamat</dt><dd id="detail-alamat">-</dd></div>
+      <div><dt>Catatan</dt><dd id="detail-catatan">-</dd></div>
+      <div><dt>COD</dt><dd id="detail-cod">-</dd></div>
+    </dl>
+  </div>
+
+  <div class="detail-section card">
+    <h2 class="detail-section__title">Lokasi</h2>
+    <div id="detail-map" class="detail-map" role="img" aria-label="Peta lokasi tujuan"></div>
+    <p class="detail-coords" id="detail-coords">-</p>
+    <div class="detail-map__actions">
+      <button class="btn btn--outline" id="btn-navigate" type="button">
+        <span class="material-icon" aria-hidden="true">navigation</span> Navigasi
+      </button>
+      <span id="detail-distance">-</span>
+      <span id="detail-eta">-</span>
+    </div>
+  </div>
+
+  <div class="detail-section card">
+    <h2 class="detail-section__title">Foto Paket</h2>
+    <div id="detail-photos" class="photo-grid"></div>
+  </div>
+
+  <div class="detail-section card">
+    <h2 class="detail-section__title">Riwayat Status</h2>
+    <ol id="detail-history" class="timeline"></ol>
+  </div>
+
+  <div class="detail-actions">
+    <button class="btn btn--primary btn--block" id="btn-update-status" type="button">Update Status</button>
+  </div>
+</section>

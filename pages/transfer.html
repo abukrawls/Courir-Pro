@@ -1,0 +1,24 @@
+<section class="page page-transfer" data-page="transfer" aria-labelledby="transfer-title">
+  <h1 id="transfer-title" class="visually-hidden">Transfer Paket</h1>
+
+  <div class="search-bar">
+    <span class="material-icon" aria-hidden="true">search</span>
+    <input type="search" id="input-search-courier" placeholder="Cari kurir tujuan...">
+  </div>
+  <div id="courier-list" class="courier-list" aria-live="polite"></div>
+
+  <form id="form-transfer" class="transfer-form" hidden>
+    <p class="transfer-form__target">Transfer ke: <strong id="transfer-target-name">-</strong></p>
+    <p class="transfer-form__resi">Resi: <span id="transfer-resi">-</span></p>
+    <label class="field">
+      <span class="field__label">Catatan</span>
+      <textarea id="transfer-notes" rows="2"></textarea>
+    </label>
+    <button type="submit" class="btn btn--primary btn--block">Konfirmasi Transfer</button>
+  </form>
+
+  <div class="dash-section">
+    <h2>Riwayat Transfer</h2>
+    <div id="transfer-history" class="timeline" aria-live="polite"></div>
+  </div>
+</section>

@@ -1,0 +1,22 @@
+<section class="page page-kinerja" data-page="kinerja" aria-labelledby="kinerja-title">
+  <h1 id="kinerja-title" class="visually-hidden">Kinerja</h1>
+
+  <div class="dash-stats-grid" id="kinerja-stats">
+    <div class="stat-card" data-stat="total"><p class="stat-card__value" id="k-total">0</p><p class="stat-card__label">Total Paket</p></div>
+    <div class="stat-card" data-stat="success"><p class="stat-card__value" id="k-success">0</p><p class="stat-card__label">Berhasil</p></div>
+    <div class="stat-card" data-stat="failed"><p class="stat-card__value" id="k-failed">0</p><p class="stat-card__label">Gagal</p></div>
+    <div class="stat-card" data-stat="pending"><p class="stat-card__value" id="k-pending">0</p><p class="stat-card__label">Pending</p></div>
+    <div class="stat-card" data-stat="pickup"><p class="stat-card__value" id="k-pickup">0</p><p class="stat-card__label">Pickup</p></div>
+    <div class="stat-card" data-stat="return"><p class="stat-card__value" id="k-return">0</p><p class="stat-card__label">Return</p></div>
+  </div>
+
+  <div class="card kinerja-percentage">
+    <p>Persentase Keberhasilan</p>
+    <p class="kinerja-percentage__value" id="k-percentage">0%</p>
+  </div>
+
+  <div class="card kinerja-chart">
+    <h2>Grafik Kinerja</h2>
+    <canvas id="kinerja-chart-canvas" role="img" aria-label="Grafik kinerja pengiriman"></canvas>
+  </div>
+</section>
