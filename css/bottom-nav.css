@@ -1,0 +1,25 @@
+/* ===== Bottom Navigation ===== */
+.bottom-nav{
+  position:fixed;bottom:0;left:50%;transform:translateX(-50%);
+  width:100%;max-width:var(--max-width);
+  height:var(--bottom-nav-height);
+  background:var(--color-surface);
+  border-top:1px solid var(--color-outline-variant);
+  display:flex;align-items:center;justify-content:space-around;
+  padding-bottom:env(safe-area-inset-bottom);
+  z-index:var(--z-header);
+}
+.bottom-nav__item{
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+  color:var(--color-on-surface-variant);font-size:11px;
+  padding:var(--space-1) var(--space-2);border-radius:var(--radius-sm);
+  transition:color var(--motion-fast);
+}
+.bottom-nav__item.is-active{color:var(--color-primary);font-weight:600;}
+.bottom-nav__item--fab{
+  width:52px;height:52px;border-radius:50%;
+  background:var(--color-secondary);color:var(--color-on-secondary);
+  margin-top:-26px;box-shadow:var(--elevation-2);
+  justify-content:center;
+}
+.bottom-nav__item--fab .material-icon{font-size:26px;}
