@@ -1,0 +1,35 @@
+<section class="page page-absensi" data-page="absensi" aria-labelledby="absensi-title">
+  <h1 id="absensi-title" class="visually-hidden">Absensi</h1>
+
+  <div class="absensi-clock card">
+    <p class="absensi-clock__time" id="absensi-clock">--:--:--</p>
+    <p class="absensi-clock__date" id="absensi-date">-</p>
+  </div>
+
+  <div class="absensi-status card" id="absensi-status-card">
+    <p>Status hari ini: <strong id="absensi-status-label">Belum Check In</strong></p>
+    <p id="absensi-checkin-time" hidden>Check In: <span></span></p>
+    <p id="absensi-checkout-time" hidden>Check Out: <span></span></p>
+  </div>
+
+  <div class="absensi-selfie">
+    <video id="absensi-camera" playsinline autoplay muted aria-label="Pratinjau kamera selfie absensi"></video>
+    <canvas id="absensi-canvas" hidden></canvas>
+    <img id="absensi-preview" alt="Pratinjau selfie" hidden>
+  </div>
+
+  <p class="absensi-location">
+    <span class="material-icon" aria-hidden="true">location_on</span>
+    <span id="absensi-location-label">Mengambil lokasi...</span>
+  </p>
+
+  <div class="absensi-actions">
+    <button class="btn btn--primary btn--block" id="btn-checkin" type="button">Check In</button>
+    <button class="btn btn--outline btn--block" id="btn-checkout" type="button" hidden>Check Out</button>
+  </div>
+
+  <div class="dash-section">
+    <h2>Riwayat Absensi</h2>
+    <div id="absensi-history" class="timeline" aria-live="polite"></div>
+  </div>
+</section>
