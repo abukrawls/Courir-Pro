@@ -1,0 +1,11 @@
+/* ===== Bottom Sheet / Modal ===== */
+.bottom-sheet-scrim{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:var(--z-modal);}
+.bottom-sheet{
+  position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:100%;max-width:var(--max-width);
+  background:var(--color-surface);border-radius:var(--radius-lg) var(--radius-lg) 0 0;
+  padding:var(--space-4);z-index:calc(var(--z-modal) + 1);box-shadow:var(--elevation-3);
+  animation:sheet-in var(--motion-base) var(--ease-standard);
+}
+.bottom-sheet__handle{width:36px;height:4px;background:var(--color-outline);border-radius:var(--radius-pill);margin:0 auto var(--space-4);}
+@keyframes sheet-in{from{transform:translate(-50%,100%);}to{transform:translate(-50%,0);}}
+.modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:calc(100% - var(--space-8));max-width:400px;background:var(--color-surface);border-radius:var(--radius-lg);padding:var(--space-5);z-index:calc(var(--z-modal) + 1);box-shadow:var(--elevation-3);}

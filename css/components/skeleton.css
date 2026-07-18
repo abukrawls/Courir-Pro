@@ -1,0 +1,4 @@
+/* ===== Skeleton Loading ===== */
+.skeleton{background:linear-gradient(90deg,var(--color-surface-container) 25%,var(--color-surface-container-high) 37%,var(--color-surface-container) 63%);background-size:400% 100%;animation:skeleton-shimmer 1.4s ease infinite;border-radius:var(--radius-md);}
+.skeleton--package-card{height:96px;}
+@keyframes skeleton-shimmer{0%{background-position:100% 50%;}100%{background-position:0 50%;}}

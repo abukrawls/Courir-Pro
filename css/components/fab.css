@@ -1,0 +1,7 @@
+/* ===== FAB ===== */
+.fab{
+  position:fixed;bottom:calc(var(--bottom-nav-height) + var(--space-4));right:calc(50% - var(--max-width)/2 + var(--space-4));
+  width:56px;height:56px;border-radius:50%;background:var(--color-secondary);color:var(--color-on-secondary);
+  box-shadow:var(--elevation-2);display:flex;align-items:center;justify-content:center;z-index:calc(var(--z-header) - 1);
+}
+@media (max-width:560px){.fab{right:var(--space-4);}}

@@ -1,0 +1,11 @@
+/* ===== Tabs ===== */
+.tabs{display:flex;gap:var(--space-2);overflow-x:auto;scrollbar-width:none;padding-bottom:2px;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{
+  flex-shrink:0;padding:var(--space-2) var(--space-4);border-radius:var(--radius-pill);
+  font-size:13px;font-weight:600;color:var(--color-on-surface-variant);background:var(--color-surface-container);
+  transition:background var(--motion-fast),color var(--motion-fast);
+}
+.tab.is-active{background:var(--color-primary);color:var(--color-on-primary);}
+.tab-panel{display:flex;flex-direction:column;gap:var(--space-3);}
+.list-toolbar{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--color-on-surface-variant);}

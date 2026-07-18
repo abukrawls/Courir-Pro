@@ -1,0 +1,24 @@
+/* ===== Form Elements ===== */
+.field{display:flex;flex-direction:column;gap:6px;}
+.field__label{font-size:12px;font-weight:600;color:var(--color-on-surface-variant);}
+.field input,.field select,.field textarea,.select-block{
+  height:48px;padding:0 var(--space-4);border-radius:var(--radius-md);
+  border:1.5px solid var(--color-outline);background:var(--color-surface);
+  font-size:14px;color:var(--color-on-surface);transition:border-color var(--motion-fast);
+}
+.field textarea{height:auto;padding:var(--space-3) var(--space-4);}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--color-primary);}
+.field__error{font-size:12px;color:var(--color-danger);min-height:14px;}
+.field__password{position:relative;}
+.field__password input{width:100%;padding-right:44px;}
+.field__password .icon-btn{position:absolute;right:2px;top:2px;}
+.checkbox{display:flex;align-items:center;gap:var(--space-2);font-size:13px;}
+.search-bar{display:flex;align-items:center;gap:var(--space-2);height:46px;padding:0 var(--space-4);background:var(--color-surface);border-radius:var(--radius-pill);box-shadow:var(--elevation-1);color:var(--color-on-surface-variant);}
+.search-bar input{flex:1;border:none;background:none;height:100%;font-size:14px;color:var(--color-on-surface);}
+.empty-state{display:flex;flex-direction:column;align-items:center;gap:var(--space-2);padding:var(--space-10) var(--space-4);color:var(--color-on-surface-variant);text-align:center;}
+.progress-bar{height:8px;border-radius:var(--radius-pill);background:var(--color-surface-container);overflow:hidden;}
+.progress-bar__fill{height:100%;background:var(--color-secondary);border-radius:var(--radius-pill);transition:width var(--motion-slow) var(--ease-standard);}
+.table-wrap{overflow-x:auto;background:var(--color-surface);border-radius:var(--radius-md);box-shadow:var(--elevation-1);}
+.data-table th,.data-table td{padding:var(--space-3);text-align:left;font-size:13px;border-bottom:1px solid var(--color-outline-variant);white-space:nowrap;}
+.data-table th{color:var(--color-on-surface-variant);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.04em;}
+.material-icon{font-family:'Material Symbols Rounded';font-size:22px;line-height:1;}
