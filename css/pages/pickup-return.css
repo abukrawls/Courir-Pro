@@ -1,0 +1,5 @@
+/* ===== Pickup / Return shared ===== */
+.return-reason-form{background:var(--color-surface);border-radius:var(--radius-md);padding:var(--space-4);box-shadow:var(--elevation-1);display:flex;flex-direction:column;gap:var(--space-3);}
+.return-reason-form__resi{font-family:var(--font-mono);font-size:13px;color:var(--color-primary);}
+.courier-list{display:flex;flex-direction:column;gap:var(--space-2);}
+.transfer-form{background:var(--color-surface);border-radius:var(--radius-md);padding:var(--space-4);box-shadow:var(--elevation-1);display:flex;flex-direction:column;gap:var(--space-3);}

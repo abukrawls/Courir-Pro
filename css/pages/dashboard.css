@@ -1,0 +1,11 @@
+/* ===== Dashboard ===== */
+.dash-profile{display:flex;align-items:center;gap:var(--space-3);}
+.dash-profile__info{flex:1;}
+.dash-profile__name{font-weight:700;font-size:16px;}
+.dash-profile__meta{font-size:12px;display:flex;align-items:center;gap:6px;}
+.rating{display:inline-flex;align-items:center;gap:2px;color:var(--color-warning);}
+.rating .material-icon{font-size:14px;}
+.dash-status-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-2);}
+.status-chip{display:flex;flex-direction:column;align-items:center;gap:4px;background:var(--color-surface);border-radius:var(--radius-md);padding:var(--space-3);font-size:11px;box-shadow:var(--elevation-1);color:var(--color-on-surface-variant);}
+.dash-target__header{display:flex;justify-content:space-between;font-size:13px;margin-bottom:var(--space-2);}
+.dash-section__header{display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2);}

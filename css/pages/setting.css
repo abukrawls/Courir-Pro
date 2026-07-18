@@ -1,0 +1,5 @@
+/* ===== Setting ===== */
+.settings-row{display:flex;align-items:center;justify-content:space-between;padding:var(--space-3) 0;border-bottom:1px solid var(--color-outline-variant);font-size:14px;}
+.settings-row:last-child{border-bottom:none;}
+.settings-group h2{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--color-on-surface-variant);}
+.app-version{text-align:center;font-size:11px;color:var(--color-on-surface-variant);}
