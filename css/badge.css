@@ -1,0 +1,13 @@
+/* ===== Badge / Pill / Status ===== */
+.badge--priority{background:var(--color-warning-container);color:var(--color-warning);font-size:10px;font-weight:700;padding:2px 8px;border-radius:var(--radius-pill);position:static;}
+.badge--cod{background:var(--color-secondary-container);color:var(--color-secondary-dark);font-size:10px;font-weight:700;padding:2px 8px;border-radius:var(--radius-pill);position:static;}
+.status-pill{
+  display:inline-flex;align-items:center;padding:4px 10px;border-radius:var(--radius-pill);
+  font-size:11px;font-weight:700;background:var(--color-surface-container);color:var(--color-on-surface-variant);
+}
+.status-pill[data-status="todo"],.status-pill[data-status="pending"]{background:var(--color-info-container);color:var(--color-info);}
+.status-pill[data-status="in_progress"]{background:var(--color-warning-container);color:var(--color-warning);}
+.status-pill[data-status="done"]{background:var(--color-success-container);color:var(--color-success);}
+.status-pill[data-status="failed"],.status-pill[data-status="return"]{background:var(--color-danger-container);color:var(--color-danger);}
+.chip{padding:var(--space-2) var(--space-4);border-radius:var(--radius-pill);background:var(--color-surface-container);font-size:13px;font-weight:600;color:var(--color-on-surface-variant);}
+.chip.is-active{background:var(--color-primary);color:var(--color-on-primary);}
