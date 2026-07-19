@@ -6,7 +6,7 @@ const WalletService = (() => {
     return existing || { id: crypto.randomUUID(), userId, saldo: 0, bonus: 0, insentif: 0, cod: 0, mutasi: [] };
   }
 
-  async function addMutasi(userId, entry) {
+  async function addMutasi(userId, entry, shouldSync = true) {
     const wallet = await getWallet(userId);
     wallet.mutasi = wallet.mutasi || [];
     wallet.mutasi.unshift({ ...entry, at: new Date().toISOString() });
@@ -14,9 +14,9 @@ const WalletService = (() => {
     if (entry.type === 'bonus') wallet.bonus += entry.amount;
     if (entry.type === 'insentif') wallet.insentif += entry.amount;
     if (entry.type === 'cod') wallet.cod += entry.amount;
-    wallet.synced = false;
+    wallet.synced = !shouldSync; // data lokal/demo ditandai synced=true supaya tidak pernah dicoba dikirim ke server
     await DB.put(STORES.WALLET, wallet);
-    await DB.queueSync({ store: 'wallet', type: 'update', payload: wallet });
+    if (shouldSync) await DB.queueSync({ store: 'wallet', type: 'update', payload: wallet });
     return wallet;
   }
 
