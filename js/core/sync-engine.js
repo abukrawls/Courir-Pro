@@ -65,8 +65,15 @@ const SyncEngine = (() => {
           }
           await DB.remove(STORES.SYNC_QUEUE, item.queueId);
         } catch (err) {
-          console.warn('[Sync] gagal memproses item, dicoba lagi nanti:', err.message);
-          break; // hentikan agar urutan tetap, coba lagi di siklus berikutnya
+          const retryCount = (item.retryCount || 0) + 1;
+          if (retryCount >= 5) {
+            console.error('[Sync] item dibuang setelah 5x gagal (kemungkinan data tidak valid untuk server):', item.store, err.message);
+            await DB.remove(STORES.SYNC_QUEUE, item.queueId);
+          } else {
+            console.warn(`[Sync] gagal (percobaan ${retryCount}/5), dicoba lagi nanti:`, err.message);
+            await DB.put(STORES.SYNC_QUEUE, { ...item, retryCount });
+          }
+          // lanjut ke item berikutnya — satu item gagal tidak boleh menyandera seluruh antrian
         }
       }
       await DB.setSetting('lastSyncAt', new Date().toISOString());
