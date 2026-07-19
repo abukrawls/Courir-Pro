@@ -8,6 +8,15 @@ const SyncEngine = (() => {
   let running = false;
   let intervalId = null;
 
+  function normalizePayload(table, payload) {
+    const clone = { ...payload };
+    if (table === 'wallet' && 'userId' in clone) {
+      clone.user_id = clone.userId;
+      delete clone.userId;
+    }
+    return clone;
+  }
+
   async function pushQueue() {
     if (!SUPABASE_CONFIGURED || !supabaseClient || !navigator.onLine) return;
     if (running) return;
@@ -18,7 +27,8 @@ const SyncEngine = (() => {
         try {
           const table = item.store;
           if (item.type === 'insert' || item.type === 'update') {
-            const { error } = await supabaseClient.from(table).upsert(item.payload);
+            const payload = normalizePayload(table, item.payload);
+            const { error } = await supabaseClient.from(table).upsert(payload);
             if (error) throw error;
           } else if (item.type === 'delete') {
             const { error } = await supabaseClient.from(table).delete().eq('id', item.payload.id);
