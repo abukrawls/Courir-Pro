@@ -27,7 +27,17 @@ const SettingController = (() => {
 
     const lastSync = await DB.getSetting('lastSyncAt');
     qs('#setting-last-sync', container).textContent = lastSync ? formatDateTime(lastSync) : 'Belum pernah';
-    on(qs('#btn-sync-now', container), 'click', async () => { Loader.show(); await SyncEngine.fullSync(); Loader.hide(); Toast.show('Sinkronisasi selesai', 'success'); });
+    on(qs('#btn-sync-now', container), 'click', async () => {
+      Loader.show();
+      try {
+        await SyncEngine.fullSync();
+        Toast.show('Sinkronisasi selesai', 'success');
+      } catch (err) {
+        Toast.show('Sinkronisasi gagal: ' + err.message, 'error');
+      } finally {
+        Loader.hide();
+      }
+    });
 
     on(qs('#btn-change-pin', container), 'click', async () => {
       const pin = prompt('Masukkan PIN baru (6 digit):');
