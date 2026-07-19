@@ -119,7 +119,7 @@ create table if not exists public.notifications (
   id uuid primary key default gen_random_uuid(),
   user_id uuid references public.users(id) on delete cascade, -- null = broadcast semua user
   title text not null,
-  desc text,
+  "desc" text, -- diberi tanda kutip karena "desc" adalah reserved keyword di Postgres
   icon text default 'notifications',
   read boolean default false,
   created_at timestamptz default now()
@@ -181,6 +181,8 @@ create policy "deliveries_insert" on public.deliveries for insert
 -- PICKUP
 create policy "pickup_select" on public.pickup for select
   using (kurir_id = auth.uid() or kurir_id is null or public.is_staff());
+create policy "pickup_insert" on public.pickup for insert
+  with check (kurir_id = auth.uid() or kurir_id is null or public.is_staff());
 create policy "pickup_update" on public.pickup for update
   using (kurir_id = auth.uid() or public.is_staff());
 
@@ -200,6 +202,10 @@ create policy "attendance_update" on public.attendance for update
 
 -- WALLET
 create policy "wallet_select" on public.wallet for select
+  using (user_id = auth.uid() or public.is_staff());
+create policy "wallet_insert" on public.wallet for insert
+  with check (user_id = auth.uid() or public.is_staff());
+create policy "wallet_update" on public.wallet for update
   using (user_id = auth.uid() or public.is_staff());
 
 -- NOTIFICATIONS
