@@ -1,24 +1,31 @@
 /* =====================================================================
    App Entry Point
 ===================================================================== */
-(async function bootstrap() {
-  await DB.open();
-  await seedDemoDataIfEmpty();
-  await applySavedPreferences();
+window.addEventListener('error', (e) => {
+  console.error('[Courier Pro] Uncaught error:', e.message, e.filename, e.lineno);
+});
+window.addEventListener('unhandledrejection', (e) => {
+  console.error('[Courier Pro] Unhandled promise rejection:', e.reason);
+});
 
+(async function bootstrap() {
+  // Prioritas #1: tampilkan UI SEGERA — tidak menunggu database/data demo/Supabase.
+  // LoginController tidak butuh IndexedDB sama sekali, jadi halaman login pasti bisa muncul
+  // walau ada masalah di lapisan data.
   AuthService.tryAutoLogin();
   setupShellChrome();
   registerServiceWorker();
-
-  // Router dijalankan SEGERA — halaman login/dashboard tidak menunggu Supabase sama sekali
   Router.start();
-  NotificationService.updateBadge();
 
-  // Supabase dimuat paralel di belakang layar; kalau lambat/gagal, app tetap jalan offline
-  initSupabaseClient().then(() => {
-    SyncEngine.start();
-    NotificationService.subscribeRealtime();
-  });
+  // Semua proses data berjalan paralel di belakang layar. Setiap langkah dibungkus
+  // try/catch sendiri-sendiri supaya satu proses gagal TIDAK menghentikan proses lain
+  // ataupun membuat UI macet.
+  seedDemoDataIfEmpty().catch((err) => console.error('[Courier Pro] Gagal membuat data demo:', err));
+  applySavedPreferences().catch((err) => console.warn('[Courier Pro] Gagal memuat preferensi:', err));
+  NotificationService.updateBadge().catch((err) => console.warn('[Courier Pro] Gagal memuat notifikasi:', err));
+  initSupabaseClient()
+    .then(() => { SyncEngine.start(); NotificationService.subscribeRealtime(); })
+    .catch((err) => console.warn('[Courier Pro] Supabase init gagal:', err));
 })();
 
 /* ===== Service Worker: registrasi + jembatan pesan Background Sync ===== */
