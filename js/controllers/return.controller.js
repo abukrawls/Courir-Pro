@@ -30,7 +30,8 @@ const ReturnController = (() => {
       e.preventDefault();
       const record = {
         id: crypto.randomUUID(), resi: pendingResi, reason: qs('#return-reason').value,
-        photos, status: 'return', createdAt: new Date().toISOString(), synced: false,
+        photos, status: 'return', kurirId: State.get('currentUser')?.id,
+        createdAt: new Date().toISOString(), synced: false,
       };
       await DB.put(STORES.RETURNS, record);
       await DB.queueSync({ store: 'returns', type: 'insert', payload: record });

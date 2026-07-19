@@ -22,8 +22,20 @@ const TransferController = (() => {
 
     on(qs('#form-transfer', container), 'submit', async (e) => {
       e.preventDefault();
-      const record = { id: crypto.randomUUID(), resi: pendingResi, toUser: selectedCourier.id, notes: qs('#transfer-notes').value, at: new Date().toISOString(), synced: false };
+      const currentUser = State.get('currentUser');
+      const record = {
+        id: crypto.randomUUID(), resi: pendingResi, fromUser: currentUser?.id,
+        toUser: selectedCourier.id, notes: qs('#transfer-notes').value,
+        at: new Date().toISOString(), synced: false,
+      };
       await DB.put(STORES.HISTORY, record);
+      await DB.queueSync({ store: 'history', type: 'insert', payload: record });
+
+      // Paket harus benar-benar berpindah tanggung jawab ke kurir baru, bukan cuma tercatat di log.
+      const pkg = await PackageService.findByResi(pendingResi);
+      if (pkg) await PackageService.upsert({ ...pkg, kurirId: selectedCourier.id });
+
+      SyncEngine.pushQueue();
       Toast.show(`Paket ditransfer ke ${selectedCourier.name}`, 'success');
       Router.goTo('deliveries');
     });

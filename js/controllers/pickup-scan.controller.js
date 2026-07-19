@@ -10,7 +10,18 @@ const PickupScanController = (() => {
     }
     on(qs('#btn-finish-pickup', container), 'click', async () => {
       ScannerService.stop();
-      for (const item of scanned) await DB.put(STORES.PICKUP, { ...item, status: 'done', pickedAt: new Date().toISOString(), synced: false });
+      for (const item of scanned) {
+        // Perbarui record pickup yang SUDAH ADA (jaga nama/alamat asli),
+        // bukan bikin record baru terpisah — resi jadi kunci pencarian.
+        const existing = (await DB.getAll(STORES.PICKUP)).find((p) => p.resi === item.resi);
+        const updated = {
+          ...(existing || { id: crypto.randomUUID(), resi: item.resi }),
+          status: 'done', pickedAt: new Date().toISOString(), synced: false,
+        };
+        await DB.put(STORES.PICKUP, updated);
+        await DB.queueSync({ store: 'pickup', type: existing ? 'update' : 'insert', payload: updated });
+      }
+      SyncEngine.pushQueue();
       Toast.show(`${scanned.length} paket selesai pickup`, 'success');
       Router.goTo('pickup');
     });
