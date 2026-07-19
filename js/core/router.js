@@ -98,7 +98,20 @@ const Toast = (() => {
 
 const Loader = (() => {
   let count = 0;
-  function show() { count++; qs('#global-loader').hidden = false; }
-  function hide() { count = Math.max(0, count - 1); if (count === 0) qs('#global-loader').hidden = true; }
+  let safetyTimer = null;
+  function show() {
+    count++;
+    qs('#global-loader').hidden = false;
+    clearTimeout(safetyTimer);
+    safetyTimer = setTimeout(() => {
+      console.warn('[Courier Pro] Loader dipaksa tersembunyi setelah 10 detik — ada proses yang macet, cek console untuk error.');
+      count = 0;
+      qs('#global-loader').hidden = true;
+    }, 10000);
+  }
+  function hide() {
+    count = Math.max(0, count - 1);
+    if (count === 0) { qs('#global-loader').hidden = true; clearTimeout(safetyTimer); }
+  }
   return { show, hide };
 })();
