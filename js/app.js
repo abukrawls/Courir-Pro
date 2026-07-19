@@ -8,12 +8,17 @@
 
   AuthService.tryAutoLogin();
   setupShellChrome();
-  SyncEngine.start();
-  NotificationService.subscribeRealtime();
-  NotificationService.updateBadge();
   registerServiceWorker();
 
+  // Router dijalankan SEGERA — halaman login/dashboard tidak menunggu Supabase sama sekali
   Router.start();
+  NotificationService.updateBadge();
+
+  // Supabase dimuat paralel di belakang layar; kalau lambat/gagal, app tetap jalan offline
+  initSupabaseClient().then(() => {
+    SyncEngine.start();
+    NotificationService.subscribeRealtime();
+  });
 })();
 
 /* ===== Service Worker: registrasi + jembatan pesan Background Sync ===== */
