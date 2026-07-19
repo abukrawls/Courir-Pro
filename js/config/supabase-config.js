@@ -5,7 +5,7 @@
    bisa jalan offline — tidak ikut macet menunggu CDN.
 ===================================================================== */
 const SUPABASE_URL = 'https://vbnoighhkmtjwbvchzly.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_wB_8YCMJlFgalWmvVtcF6w_QDBhfle-';
+const SUPABASE_ANON_KEY = 'PASTE_JWT_ANON_KEY_DI_SINI';
 const SUPABASE_CONFIGURED = !SUPABASE_URL.includes('YOUR-PROJECT') && !SUPABASE_ANON_KEY.includes('YOUR-SUPABASE');
 
 let supabaseClient = null;
