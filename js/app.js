@@ -9,6 +9,12 @@ window.addEventListener('unhandledrejection', (e) => {
 });
 
 (async function bootstrap() {
+  // Pengaman paling awal: pastikan drawer/scrim/loader benar-benar tertutup,
+  // apa pun kondisi DOM sebelumnya (mis. sisa state dari tab yang di-resume browser).
+  hide(qs('#app-drawer'));
+  hide(qs('#drawer-scrim'));
+  hide(qs('#global-loader'));
+
   // Prioritas #1: tampilkan UI SEGERA — tidak menunggu database/data demo/Supabase.
   // LoginController tidak butuh IndexedDB sama sekali, jadi halaman login pasti bisa muncul
   // walau ada masalah di lapisan data.
@@ -70,6 +76,7 @@ function setupShellChrome() {
   delegate(qs('#bottom-nav'), 'click', '.bottom-nav__item', (e, el) => Router.goTo(el.dataset.route));
   State.subscribe('currentRoute', () => {
     qsa('.bottom-nav__item').forEach((btn) => btn.classList.toggle('is-active', btn.dataset.route === State.get('currentRoute')));
+    closeDrawer(); // pengaman: drawer tidak boleh nyangkut terbuka lintas halaman
   });
 }
 
