@@ -8,11 +8,40 @@ const SyncEngine = (() => {
   let running = false;
   let intervalId = null;
 
+  /* Field lokal (IndexedDB, gaya camelCase + penanda internal seperti
+     'synced') TIDAK sama persis dengan kolom Supabase (snake_case, tanpa
+     kolom 'synced'). Fungsi ini menerjemahkan payload sebelum dikirim,
+     per tabel, supaya upsert tidak ditolak PostgREST. */
+  const FIELD_MAP = {
+    packages: {
+      kurirId: 'kurir_id', receiverName: 'receiver_name', receiverRelation: 'receiver_relation',
+      receiverType: 'receiver_type', failReason: 'fail_reason', returnReason: 'return_reason',
+      updatedAt: 'updated_at', createdAt: 'created_at',
+    },
+    pickup: { kurirId: 'kurir_id', pickedAt: 'picked_at', createdAt: 'created_at' },
+    returns: { kurirId: 'kurir_id', createdAt: 'created_at' },
+    attendance: {
+      userId: 'user_id', checkIn: 'check_in', checkOut: 'check_out',
+      photoIn: 'photo_in', photoOut: 'photo_out', gpsIn: 'gps_in', gpsOut: 'gps_out',
+    },
+    wallet: { userId: 'user_id', updatedAt: 'updated_at' },
+    notifications: { userId: 'user_id', createdAt: 'created_at' },
+    history: { fromUser: 'from_user', toUser: 'to_user' },
+  };
+  // Field lokal-only yang TIDAK PERNAH ada di tabel Supabase manapun — selalu dibuang.
+  const STRIP_ALWAYS = ['synced'];
+
   function normalizePayload(table, payload) {
     const clone = { ...payload };
-    if (table === 'wallet' && 'userId' in clone) {
-      clone.user_id = clone.userId;
-      delete clone.userId;
+    STRIP_ALWAYS.forEach((key) => delete clone[key]);
+    const map = FIELD_MAP[table];
+    if (map) {
+      Object.entries(map).forEach(([camel, snake]) => {
+        if (camel in clone) {
+          clone[snake] = clone[camel];
+          delete clone[camel];
+        }
+      });
     }
     return clone;
   }
