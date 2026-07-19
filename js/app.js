@@ -120,8 +120,8 @@ async function seedDemoDataIfEmpty() {
   ];
   await DB.bulkPut(STORES.NOTIFICATIONS, notifications);
 
-  await WalletService.addMutasi(kurir.id, { type: 'saldo', amount: 350000, note: 'Pendapatan minggu ini' });
-  await WalletService.addMutasi(kurir.id, { type: 'bonus', amount: 50000, note: 'Bonus target tercapai' });
+  await WalletService.addMutasi(kurir.id, { type: 'saldo', amount: 350000, note: 'Pendapatan minggu ini' }, false);
+  await WalletService.addMutasi(kurir.id, { type: 'bonus', amount: 50000, note: 'Bonus target tercapai' }, false);
 
   console.info('[Courier Pro] Data demo berhasil dibuat. Login: kurir1/kurir123, super1/super123, admin1/admin123');
 }
