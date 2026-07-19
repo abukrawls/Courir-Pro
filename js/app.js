@@ -109,8 +109,8 @@ async function seedDemoDataIfEmpty() {
   await DB.bulkPut(STORES.PACKAGES, packages);
 
   const pickup = [
-    { id: crypto.randomUUID(), resi: 'CP2507170101', nama: 'Toko Jaya Abadi', alamat: 'Jl. Kebon Jeruk No. 5', status: 'pending' },
-    { id: crypto.randomUUID(), resi: 'CP2507170102', nama: 'CV Makmur Sentosa', alamat: 'Jl. Pluit Raya No. 9', status: 'pending' },
+    { id: crypto.randomUUID(), resi: 'CP2507170101', nama: 'Toko Jaya Abadi', alamat: 'Jl. Kebon Jeruk No. 5', status: 'pending', kurirId: kurir.id },
+    { id: crypto.randomUUID(), resi: 'CP2507170102', nama: 'CV Makmur Sentosa', alamat: 'Jl. Pluit Raya No. 9', status: 'pending', kurirId: kurir.id },
   ];
   await DB.bulkPut(STORES.PICKUP, pickup);
 
