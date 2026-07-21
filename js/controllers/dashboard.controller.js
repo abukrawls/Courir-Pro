@@ -83,12 +83,11 @@ const DashboardController = (() => {
         </div>
         <p class="package-card__name">${escapeHtml(p.nama)}</p>
         <p class="package-card__cod ${p.cod ? 'has-cod' : ''}">${codText}</p>
-        <div class="package-card__badges">
-          ${p.cod ? '<span class="badge badge--cod-check">COD Cek Dulu</span>' : ''}
-          ${p.prioritas ? '<span class="badge badge--priority">Prioritas</span>' : ''}
-        </div>
         <div class="package-card__bottom">
-          <span class="status-pill" data-status="${p.status}">${STATUS_LABELS[p.status] || p.status}</span>
+          <div class="package-card__badges">
+            ${p.cod ? '<span class="badge badge--cod-check">COD Cek Dulu</span>' : ''}
+            ${p.prioritas ? '<span class="badge badge--priority">Prioritas</span>' : ''}
+          </div>
           <span class="package-card__time">${p.jam || ''}</span>
         </div>
       </div>`;
