@@ -1,0 +1,103 @@
+<section class="page page-share-package" data-page="share-package" aria-labelledby="share-package-title">
+  <h1 id="share-package-title" class="visually-hidden">Paket Titipan</h1>
+
+  <div class="card share-intro">
+    <p>Bantu bawakan paket kurir lain? Upload screenshot daftar paketnya (dari aplikasi manapun),
+       sistem akan coba baca resi/alamat/nama/COD otomatis. Atau tambah manual kalau cuma 1-2 paket.</p>
+  </div>
+
+  <div class="card share-upload">
+    <h2>Import dari Screenshot</h2>
+    <p class="share-upload__hint">Bisa pilih beberapa gambar sekaligus. Hasil bacaan mungkin tidak 100% akurat — cek &amp; perbaiki sebelum import.</p>
+    <button type="button" class="btn btn--primary btn--block" id="btn-pick-images">
+      <span class="material-icon" aria-hidden="true">add_photo_alternate</span> Pilih Screenshot
+    </button>
+    <input type="file" id="input-images" accept="image/*" multiple hidden>
+
+    <div id="ocr-progress" class="ocr-progress" hidden>
+      <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="ocr-progress-bar">
+        <div class="progress-bar__fill" id="ocr-progress-fill" style="width:0%"></div>
+      </div>
+      <p id="ocr-progress-label">Memproses gambar 0/0...</p>
+    </div>
+  </div>
+
+  <div class="card share-manual">
+    <h2>Tambah Manual</h2>
+    <form id="form-manual-add" class="share-manual__form">
+      <label class="field">
+        <span class="field__label">Alamat</span>
+        <textarea id="manual-alamat" rows="2" required></textarea>
+      </label>
+      <label class="field">
+        <span class="field__label">Nama Penerima</span>
+        <input type="text" id="manual-nama">
+      </label>
+      <div class="share-manual__row">
+        <label class="field">
+          <span class="field__label">COD (opsional)</span>
+          <input type="number" id="manual-cod" min="0" placeholder="0">
+        </label>
+        <label class="field">
+          <span class="field__label">No. HP (opsional)</span>
+          <input type="tel" id="manual-hp">
+        </label>
+      </div>
+      <button type="submit" class="btn btn--outline btn--block">
+        <span class="material-icon" aria-hidden="true">add</span> Tambah ke Daftar
+      </button>
+    </form>
+  </div>
+
+  <div class="share-list-section">
+    <div class="share-list-section__header">
+      <h2>Daftar Paket Titipan (<span id="share-count">0</span>)</h2>
+      <button type="button" class="link-btn" id="btn-clear-all" hidden>Hapus semua</button>
+    </div>
+
+    <div id="share-list" class="share-list" aria-live="polite">
+      <template id="tpl-share-item">
+        <article class="share-item card">
+          <div class="share-item__row">
+            <label class="field">
+              <span class="field__label">Resi (opsional)</span>
+              <input type="text" class="share-item__resi" placeholder="Otomatis dibuat jika kosong">
+            </label>
+          </div>
+          <label class="field">
+            <span class="field__label">Alamat</span>
+            <textarea class="share-item__alamat" rows="2"></textarea>
+          </label>
+          <div class="share-item__row">
+            <label class="field">
+              <span class="field__label">Nama</span>
+              <input type="text" class="share-item__nama">
+            </label>
+            <label class="field">
+              <span class="field__label">COD</span>
+              <input type="number" class="share-item__cod" min="0">
+            </label>
+          </div>
+          <label class="field">
+            <span class="field__label">No. HP (opsional)</span>
+            <input type="tel" class="share-item__hp">
+          </label>
+          <button type="button" class="share-item__delete icon-btn" aria-label="Hapus item ini">
+            <span class="material-icon" aria-hidden="true">delete</span>
+          </button>
+        </article>
+      </template>
+    </div>
+
+    <div id="share-empty" class="empty-state">
+      <span class="material-icon" aria-hidden="true">inventory_2</span>
+      <p>Belum ada paket titipan. Upload screenshot atau tambah manual di atas.</p>
+    </div>
+  </div>
+
+  <div class="share-import-bar">
+    <button type="button" class="btn btn--primary btn--block" id="btn-import-all" disabled>
+      Import Semua ke Daftar Paket
+    </button>
+  </div>
+</section>
