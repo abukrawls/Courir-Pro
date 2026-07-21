@@ -8,6 +8,25 @@ const PackageDetailController = (() => {
     qs('#detail-status').textContent = STATUS_LABELS[pkg.status] || pkg.status;
     qs('#detail-status').dataset.status = pkg.status;
     if (pkg.prioritas) show(qs('#detail-priority'));
+
+    // Kartu ringkasan atas (gaya seperti aplikasi kurir pada umumnya)
+    qs('#detail-alamat-top').textContent = pkg.alamat || '-';
+    qs('#detail-nama-top').textContent = pkg.nama || '-';
+    const codLineEl = qs('#detail-cod-line');
+    if (pkg.cod && pkg.cod > 0) {
+      codLineEl.textContent = 'COD: ' + formatCurrency(pkg.cod);
+      codLineEl.classList.add('has-cod');
+      show(qs('#detail-cod-check-badge'));
+    } else {
+      codLineEl.textContent = 'Non COD';
+      codLineEl.classList.remove('has-cod');
+      hide(qs('#detail-cod-check-badge'));
+    }
+    on(qs('#btn-copy-resi'), 'click', async () => {
+      try { await navigator.clipboard.writeText(pkg.resi); Toast.show('Resi disalin', 'success'); }
+      catch (e) { Toast.show('Gagal menyalin resi', 'error'); }
+    });
+
     qs('#detail-nama').textContent = pkg.nama || '-';
     qs('#detail-telepon').firstChild.textContent = formatPhone(pkg.hp) + ' ';
     qs('#detail-call').href = 'tel:' + formatPhone(pkg.hp);

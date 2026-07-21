@@ -65,24 +65,38 @@ const DashboardController = (() => {
   }
 
   function renderPackageCard(p) {
-    const tpl = qs('#tpl-package-card') || document.getElementById('tpl-package-card');
     const el = document.createElement('article');
     el.className = 'package-card';
     el.dataset.packageId = p.id;
+    const codText = p.cod && p.cod > 0 ? `COD: ${formatCurrency(p.cod)}` : 'Non COD';
     el.innerHTML = `
       <div class="package-card__content">
         <div class="package-card__top">
           <span class="package-card__resi mono">${escapeHtml(p.resi)}</span>
-          ${p.prioritas ? '<span class="badge badge--priority">Prioritas</span>' : ''}
-          ${p.cod ? '<span class="badge badge--cod">COD</span>' : ''}
+          <button class="icon-btn package-card__copy" type="button" aria-label="Salin resi">
+            <span class="material-icon" aria-hidden="true">content_copy</span>
+          </button>
+        </div>
+        <div class="package-card__address-row">
+          <span class="material-icon package-card__pin" aria-hidden="true">location_on</span>
+          <p class="package-card__address">${escapeHtml(p.alamat)}</p>
         </div>
         <p class="package-card__name">${escapeHtml(p.nama)}</p>
-        <p class="package-card__address">${escapeHtml(p.alamat)}</p>
+        <p class="package-card__cod ${p.cod ? 'has-cod' : ''}">${codText}</p>
+        <div class="package-card__badges">
+          ${p.cod ? '<span class="badge badge--cod-check">COD Cek Dulu</span>' : ''}
+          ${p.prioritas ? '<span class="badge badge--priority">Prioritas</span>' : ''}
+        </div>
         <div class="package-card__bottom">
           <span class="status-pill" data-status="${p.status}">${STATUS_LABELS[p.status] || p.status}</span>
           <span class="package-card__time">${p.jam || ''}</span>
         </div>
       </div>`;
+    on(el.querySelector('.package-card__copy'), 'click', async (e) => {
+      e.stopPropagation();
+      try { await navigator.clipboard.writeText(p.resi); Toast.show('Resi disalin', 'success'); }
+      catch (err) { Toast.show('Gagal menyalin resi', 'error'); }
+    });
     return el;
   }
 

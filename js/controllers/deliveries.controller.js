@@ -26,7 +26,6 @@ const DeliveriesController = (() => {
     on(qs('#btn-sort-name', container), 'click', () => handleSortClick(container, 'name'));
 
     delegate(container, 'click', '.package-card', (e, card) => Router.goTo('package-detail', { id: card.dataset.packageId }));
-    on(qs('#fab-scan', container), 'click', () => Router.goTo('scanner'));
   }
 
   async function getListForActiveTab() {
