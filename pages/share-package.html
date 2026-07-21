@@ -24,25 +24,31 @@
 
   <div class="card share-manual">
     <h2>Tambah Manual</h2>
+    <p class="share-manual__hint">Resi, nama, alamat, dan COD wajib diisi. No. HP opsional.</p>
     <form id="form-manual-add" class="share-manual__form">
       <label class="field">
+        <span class="field__label">Resi</span>
+        <input type="text" id="manual-resi" placeholder="Contoh: SPXID061778169137" required>
+      </label>
+      <label class="field">
         <span class="field__label">Alamat</span>
-        <textarea id="manual-alamat" rows="2" required></textarea>
+        <div class="field__with-icon">
+          <span class="material-icon field__with-icon-pin" aria-hidden="true">location_on</span>
+          <textarea id="manual-alamat" rows="2" required></textarea>
+        </div>
       </label>
       <label class="field">
         <span class="field__label">Nama Penerima</span>
-        <input type="text" id="manual-nama">
+        <input type="text" id="manual-nama" required>
       </label>
-      <div class="share-manual__row">
-        <label class="field">
-          <span class="field__label">COD (opsional)</span>
-          <input type="number" id="manual-cod" min="0" placeholder="0">
-        </label>
-        <label class="field">
-          <span class="field__label">No. HP (opsional)</span>
-          <input type="tel" id="manual-hp">
-        </label>
-      </div>
+      <label class="field">
+        <span class="field__label">COD</span>
+        <input type="text" inputmode="numeric" id="manual-cod" placeholder="0" required>
+      </label>
+      <label class="field">
+        <span class="field__label">No. HP (opsional)</span>
+        <input type="tel" id="manual-hp">
+      </label>
       <button type="submit" class="btn btn--outline btn--block">
         <span class="material-icon" aria-hidden="true">add</span> Tambah ke Daftar
       </button>
@@ -54,37 +60,37 @@
       <h2>Daftar Paket Titipan (<span id="share-count">0</span>)</h2>
       <button type="button" class="link-btn" id="btn-clear-all" hidden>Hapus semua</button>
     </div>
+    <p class="share-list-section__hint">Resi, nama, alamat, dan COD wajib diisi sebelum import. Baris bertanda merah berarti masih ada yang kosong.</p>
 
     <div id="share-list" class="share-list" aria-live="polite">
       <template id="tpl-share-item">
         <article class="share-item card">
-          <div class="share-item__row">
-            <label class="field">
-              <span class="field__label">Resi (opsional)</span>
-              <input type="text" class="share-item__resi" placeholder="Otomatis dibuat jika kosong">
-            </label>
-          </div>
+          <button type="button" class="share-item__delete icon-btn" aria-label="Hapus item ini">
+            <span class="material-icon" aria-hidden="true">delete</span>
+          </button>
+          <label class="field">
+            <span class="field__label">Resi</span>
+            <input type="text" class="share-item__resi" placeholder="Contoh: SPXID061778169137">
+          </label>
           <label class="field">
             <span class="field__label">Alamat</span>
-            <textarea class="share-item__alamat" rows="2"></textarea>
+            <div class="field__with-icon">
+              <span class="material-icon field__with-icon-pin" aria-hidden="true">location_on</span>
+              <textarea class="share-item__alamat" rows="2"></textarea>
+            </div>
           </label>
-          <div class="share-item__row">
-            <label class="field">
-              <span class="field__label">Nama</span>
-              <input type="text" class="share-item__nama">
-            </label>
-            <label class="field">
-              <span class="field__label">COD</span>
-              <input type="number" class="share-item__cod" min="0">
-            </label>
-          </div>
+          <label class="field">
+            <span class="field__label">Nama</span>
+            <input type="text" class="share-item__nama">
+          </label>
+          <label class="field">
+            <span class="field__label">COD</span>
+            <input type="text" inputmode="numeric" class="share-item__cod" placeholder="0">
+          </label>
           <label class="field">
             <span class="field__label">No. HP (opsional)</span>
             <input type="tel" class="share-item__hp">
           </label>
-          <button type="button" class="share-item__delete icon-btn" aria-label="Hapus item ini">
-            <span class="material-icon" aria-hidden="true">delete</span>
-          </button>
         </article>
       </template>
     </div>
