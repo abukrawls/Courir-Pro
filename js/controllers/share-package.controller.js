@@ -58,12 +58,17 @@ const SharePackageController = (() => {
     const resiRegex = /^[A-Z0-9]{8,}$/i;
     const codRegex = /cod\s*:?\s*([\d.,]+)/i;
     const skipRegex = /^(cod cek dulu|home|kantor|apartment|kos|ruko)$/i;
+    // Baris "sampah" hasil OCR salah baca ikon telepon/chat (mis. "C @ 4", "»", dsb) —
+    // dibuang total, tidak boleh dianggap alamat maupun nama.
+    const garbageRegex = /^[a-z]\s*@\s*\d+$/i;
+    const isUsable = (l) => l.length > 3 && !skipRegex.test(l) && !garbageRegex.test(l);
 
+    const resiRegexAnchor = resiRegex; // alias, dipakai juga untuk deteksi blok baru di bawah
     const blocks = [];
     let current = null;
     for (const rawLine of lines) {
       const compact = rawLine.replace(/\s/g, '');
-      if (resiRegex.test(compact) && /\d/.test(compact) && /[A-Z]/i.test(compact) && compact.length <= 20) {
+      if (resiRegexAnchor.test(compact) && /\d/.test(compact) && /[A-Z]/i.test(compact) && compact.length <= 20) {
         if (current) blocks.push(current);
         current = { resi: compact.toUpperCase(), bodyLines: [] };
       } else if (current) {
@@ -73,18 +78,21 @@ const SharePackageController = (() => {
     if (current) blocks.push(current);
 
     return blocks.map((b) => {
+      // Cari indeks baris COD dulu — itu jadi batas: apa pun setelah baris COD
+      // (ikon, badge sisa) dibuang, tidak pernah dianggap bagian alamat/nama.
       let cod = 0;
-      const bodyNoCod = [];
-      b.bodyLines.forEach((l) => {
+      let codIdx = -1;
+      b.bodyLines.forEach((l, i) => {
         const m = l.match(codRegex);
-        if (m) cod = parseInt(m[1].replace(/[.,]/g, ''), 10) || 0;
-        else if (!skipRegex.test(l)) bodyNoCod.push(l);
+        if (m && codIdx === -1) { cod = parseInt(m[1].replace(/[.,]/g, ''), 10) || 0; codIdx = i; }
       });
+      const relevantLines = (codIdx === -1 ? b.bodyLines : b.bodyLines.slice(0, codIdx)).filter(isUsable);
+
       let nama = '';
-      let alamatLines = bodyNoCod;
-      if (bodyNoCod.length > 1) {
-        nama = bodyNoCod[bodyNoCod.length - 1];
-        alamatLines = bodyNoCod.slice(0, -1);
+      let alamatLines = relevantLines;
+      if (relevantLines.length > 1) {
+        nama = relevantLines[relevantLines.length - 1]; // baris tepat sebelum COD (atau baris terakhir yang valid)
+        alamatLines = relevantLines.slice(0, -1);
       }
       return {
         id: crypto.randomUUID(), resi: b.resi, alamat: alamatLines.join(', '),
