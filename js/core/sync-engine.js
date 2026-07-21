@@ -29,7 +29,7 @@ const SyncEngine = (() => {
     history: { fromUser: 'from_user', toUser: 'to_user' },
   };
   // Field lokal-only yang TIDAK PERNAH ada di tabel Supabase manapun — selalu dibuang.
-  const STRIP_ALWAYS = ['synced'];
+  const STRIP_ALWAYS = ['synced', 'titipan']; // 'titipan' bekas pendekatan lama, sekarang pakai status:'titipan'
 
   function normalizePayload(table, payload) {
     const clone = { ...payload };
