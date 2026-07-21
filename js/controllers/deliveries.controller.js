@@ -29,7 +29,6 @@ const DeliveriesController = (() => {
   }
 
   async function getListForActiveTab() {
-    if (activeStatus === 'titipan') return PackageService.getTitipan();
     return PackageService.getByStatus(activeStatus);
   }
 

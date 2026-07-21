@@ -259,14 +259,13 @@ const SharePackageController = (() => {
         hp: item.hp || '',
         alamat: item.alamat,
         cod: item.cod,
-        status: 'todo',
+        status: 'titipan',
         prioritas: false,
         jam: jamStr,
         tanggal: todayStr,
         kurirId: user?.id,
-        history: [{ status: 'todo', at: new Date().toISOString() }],
+        history: [{ status: 'titipan', at: new Date().toISOString() }],
         catatan: 'Paket titipan (bantu antar)',
-        titipan: true,
       });
     }
     Toast.show(`${items.length} paket titipan berhasil ditambahkan ke Daftar Paket`, 'success');
