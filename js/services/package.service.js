@@ -10,6 +10,11 @@ const PackageService = (() => {
     return all.filter((p) => p.status === status);
   }
 
+  async function getTitipan() {
+    const all = await getAll();
+    return all.filter((p) => p.titipan === true);
+  }
+
   async function getById(id) { return DB.get(STORES.PACKAGES, id); }
 
   async function search(query) {
