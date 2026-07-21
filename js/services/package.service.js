@@ -53,5 +53,5 @@ const PackageService = (() => {
     return all.find((p) => p.resi === resi.trim());
   }
 
-  return { getAll, getByStatus, getById, search, upsert, updateStatus, findByResi };
+  return { getAll, getByStatus, getTitipan, getById, search, upsert, updateStatus, findByResi };
 })();
