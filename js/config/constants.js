@@ -57,12 +57,12 @@ const DEFAULT_ROUTE = 'dashboard';
 
 const PACKAGE_STATUS = {
   TODO: 'todo', IN_PROGRESS: 'in_progress', DONE: 'done',
-  POSTPONED: 'postponed', FAILED: 'failed', RETURN: 'return',
+  POSTPONED: 'postponed', FAILED: 'failed', RETURN: 'return', TITIPAN: 'titipan',
 };
 
 const STATUS_LABELS = {
   todo: 'To Do', in_progress: 'Dalam Perjalanan', done: 'Selesai',
-  postponed: 'Ditunda', failed: 'Gagal', return: 'Return', pending: 'Pending',
+  postponed: 'Ditunda', failed: 'Gagal', return: 'Return', pending: 'Pending', titipan: 'Titipan',
 };
 
 const DRAWER_MENU_BY_ROLE = {
