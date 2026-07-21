@@ -1,26 +1,31 @@
 <section class="page page-package-detail" data-page="package-detail" aria-labelledby="package-detail-title">
   <h1 id="package-detail-title" class="visually-hidden">Detail Paket</h1>
 
+  <!-- Kartu Ringkasan — gaya "Order Info" -->
   <div class="detail-header card">
+    <div class="detail-header__badges-top">
+      <span class="badge badge--cod-check" id="detail-cod-check-badge" hidden>COD Cek Dulu</span>
+      <span class="badge badge--priority" id="detail-priority" hidden>
+        <span class="material-icon" aria-hidden="true">priority_high</span> Prioritas
+      </span>
+      <span class="status-pill" id="detail-status">-</span>
+    </div>
     <div class="detail-header__top">
       <span class="detail-resi mono" id="detail-resi">-</span>
       <button class="icon-btn" id="btn-copy-resi" type="button" aria-label="Salin nomor resi">
         <span class="material-icon" aria-hidden="true">content_copy</span>
       </button>
-      <span class="status-pill" id="detail-status">-</span>
     </div>
     <div class="detail-address-row">
       <span class="material-icon detail-address-row__pin" aria-hidden="true">location_on</span>
       <p class="detail-address-row__text" id="detail-alamat-top">-</p>
     </div>
-    <p class="detail-nama-top" id="detail-nama-top">-</p>
-    <p class="detail-cod-line" id="detail-cod-line">-</p>
-    <div class="detail-badges">
-      <span class="badge badge--cod-check" id="detail-cod-check-badge" hidden>COD Cek Dulu</span>
-      <span class="badge badge--priority" id="detail-priority" hidden>
-        <span class="material-icon" aria-hidden="true">priority_high</span> Prioritas
-      </span>
-    </div>
+  </div>
+
+  <!-- Kartu Jumlah COD — terpisah, mengikuti gaya referensi -->
+  <div class="card detail-cod-card">
+    <span class="detail-cod-card__label">Jumlah COD</span>
+    <span class="detail-cod-card__amount" id="detail-cod-amount">-</span>
   </div>
 
   <div class="detail-section card">
@@ -31,9 +36,7 @@
         <a id="detail-call" href="tel:" class="icon-btn" aria-label="Telepon penerima"><span class="material-icon" aria-hidden="true">call</span></a>
         <a id="detail-whatsapp" href="https://wa.me/" class="icon-btn" aria-label="WhatsApp penerima" target="_blank" rel="noopener"><span class="material-icon" aria-hidden="true">chat</span></a>
       </dd></div>
-      <div><dt>Alamat</dt><dd id="detail-alamat">-</dd></div>
       <div><dt>Catatan</dt><dd id="detail-catatan">-</dd></div>
-      <div><dt>COD</dt><dd id="detail-cod">-</dd></div>
     </dl>
   </div>
 
