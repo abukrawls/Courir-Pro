@@ -16,14 +16,22 @@
     <button class="tab" role="tab" aria-selected="false" data-status="postponed" type="button">Ditunda</button>
     <button class="tab" role="tab" aria-selected="false" data-status="failed" type="button">Gagal</button>
     <button class="tab" role="tab" aria-selected="false" data-status="return" type="button">Return</button>
+    <button class="tab" role="tab" aria-selected="false" data-status="titipan" type="button">Titipan</button>
     <button class="tab" role="tab" aria-selected="false" data-status="all" type="button">Semua</button>
   </div>
 
   <div class="list-toolbar">
     <span id="delivery-count-label">0 paket</span>
-    <button class="link-btn" id="btn-sort-package" type="button">
-      <span class="material-icon" aria-hidden="true">sort</span> Urutkan
-    </button>
+    <div class="sort-controls">
+      <button class="sort-chip" id="btn-sort-time" type="button" data-sort="time" aria-label="Urutkan berdasarkan waktu">
+        <span class="material-icon" aria-hidden="true">schedule</span>
+        <span class="material-icon sort-chip__arrow" aria-hidden="true">arrow_downward</span>
+      </button>
+      <button class="sort-chip" id="btn-sort-name" type="button" data-sort="name" aria-label="Urutkan berdasarkan nama">
+        <span>A-Z</span>
+        <span class="material-icon sort-chip__arrow" aria-hidden="true">arrow_downward</span>
+      </button>
+    </div>
   </div>
 
   <div id="delivery-list" class="package-list" aria-live="polite">
