@@ -35,39 +35,11 @@
   </div>
 
   <div id="delivery-list" class="package-list" aria-live="polite">
-    <!-- Template kartu paket (diisi/diduplikasi oleh controller) -->
-    <template id="tpl-package-card">
-      <article class="package-card" data-package-id="">
-        <div class="package-card__swipe-bg package-card__swipe-bg--left">
-          <span class="material-icon" aria-hidden="true">check_circle</span>
-        </div>
-        <div class="package-card__swipe-bg package-card__swipe-bg--right">
-          <span class="material-icon" aria-hidden="true">cancel</span>
-        </div>
-        <div class="package-card__content">
-          <div class="package-card__top">
-            <span class="package-card__resi" data-field="resi"></span>
-            <span class="badge badge--priority" data-field="prioritas" hidden>Prioritas</span>
-            <span class="badge badge--cod" data-field="cod" hidden>COD</span>
-          </div>
-          <p class="package-card__name" data-field="nama"></p>
-          <p class="package-card__phone" data-field="hp"></p>
-          <p class="package-card__address" data-field="alamat"></p>
-          <div class="package-card__bottom">
-            <span class="status-pill" data-field="status"></span>
-            <span class="package-card__time" data-field="jam"></span>
-          </div>
-        </div>
-      </article>
-    </template>
+    <!-- Kartu paket dibuat langsung oleh DashboardController.renderPackageCard() di JS -->
   </div>
 
   <div id="delivery-empty" class="empty-state" hidden>
     <span class="material-icon" aria-hidden="true">inventory_2</span>
     <p>Tidak ada paket pada status ini</p>
   </div>
-
-  <button class="fab" id="fab-scan" type="button" aria-label="Pindai paket">
-    <span class="material-icon" aria-hidden="true">qr_code_scanner</span>
-  </button>
 </section>

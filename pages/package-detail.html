@@ -3,12 +3,24 @@
 
   <div class="detail-header card">
     <div class="detail-header__top">
-      <span class="detail-resi" id="detail-resi">-</span>
+      <span class="detail-resi mono" id="detail-resi">-</span>
+      <button class="icon-btn" id="btn-copy-resi" type="button" aria-label="Salin nomor resi">
+        <span class="material-icon" aria-hidden="true">content_copy</span>
+      </button>
       <span class="status-pill" id="detail-status">-</span>
     </div>
-    <p class="detail-priority" id="detail-priority" hidden>
-      <span class="material-icon" aria-hidden="true">priority_high</span> Prioritas
-    </p>
+    <div class="detail-address-row">
+      <span class="material-icon detail-address-row__pin" aria-hidden="true">location_on</span>
+      <p class="detail-address-row__text" id="detail-alamat-top">-</p>
+    </div>
+    <p class="detail-nama-top" id="detail-nama-top">-</p>
+    <p class="detail-cod-line" id="detail-cod-line">-</p>
+    <div class="detail-badges">
+      <span class="badge badge--cod-check" id="detail-cod-check-badge" hidden>COD Cek Dulu</span>
+      <span class="badge badge--priority" id="detail-priority" hidden>
+        <span class="material-icon" aria-hidden="true">priority_high</span> Prioritas
+      </span>
+    </div>
   </div>
 
   <div class="detail-section card">
