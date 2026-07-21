@@ -47,6 +47,7 @@ create table if not exists public.packages (
   return_reason text,
   gps jsonb,
   history jsonb default '[]',
+  titipan boolean default false, -- true jika paket hasil import "Paket Titipan" (bantu antar kurir lain)
   updated_at timestamptz default now(),
   created_at timestamptz default now()
 );
