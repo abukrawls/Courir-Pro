@@ -10,7 +10,7 @@
      SyncEngine.fullSync() begitu koneksi & registrasi sync tersedia
 ===================================================================== */
 
-const CACHE_VERSION = 'courier-pro-v15'; // naikkan angka ini SETIAP KALI ada file yang di-cache (css/js/html) berubah
+const CACHE_VERSION = 'courier-pro-v16'; // naikkan angka ini SETIAP KALI ada file yang di-cache (css/js/html) berubah
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const PAGES_CACHE = `${CACHE_VERSION}-pages`;
 
