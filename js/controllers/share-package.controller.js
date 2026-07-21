@@ -198,6 +198,7 @@ const SharePackageController = (() => {
         kurirId: user?.id,
         history: [{ status: 'todo', at: new Date().toISOString() }],
         catatan: 'Paket titipan (bantu antar)',
+        titipan: true,
       });
       count++;
     }
