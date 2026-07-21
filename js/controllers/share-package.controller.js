@@ -93,18 +93,27 @@ const SharePackageController = (() => {
     }).filter((item) => item.alamat || item.nama);
   }
 
+  const DRAFT_KEY = 'sharePackageDraft';
+  let persistTimer = null;
+
+  function persistDraft() {
+    clearTimeout(persistTimer);
+    persistTimer = setTimeout(() => { DB.setSetting(DRAFT_KEY, items).catch((e) => console.warn('[SharePackage] gagal simpan draft:', e)); }, 400);
+  }
+
   async function init(container) {
-    items = [];
+    items = (await DB.getSetting(DRAFT_KEY)) || []; // pulihkan draft yang belum sempat di-import
     render(container);
+    if (items.length) Toast.show(`${items.length} draft titipan sebelumnya dipulihkan`, 'success');
 
     on(qs('#btn-pick-images', container), 'click', () => qs('#input-images', container).click());
     on(qs('#input-images', container), 'change', (e) => handleImages(container, Array.from(e.target.files)));
     on(qs('#form-manual-add', container), 'submit', (e) => handleManualAdd(container, e));
-    on(qs('#btn-clear-all', container), 'click', () => { items = []; render(container); });
+    on(qs('#btn-clear-all', container), 'click', () => { items = []; persistDraft(); render(container); });
     on(qs('#btn-import-all', container), 'click', () => handleImportAll(container));
     delegate(qs('#share-list', container), 'click', '.share-item__delete', (e, btn) => {
       const idx = qsa('.share-item', qs('#share-list', container)).indexOf(btn.closest('.share-item'));
-      if (idx > -1) { items.splice(idx, 1); render(container); }
+      if (idx > -1) { items.splice(idx, 1); persistDraft(); render(container); }
     });
 
     // Format ribuan otomatis saat mengetik di field COD manual
@@ -198,17 +207,18 @@ const SharePackageController = (() => {
       hpInput.value = item.hp || '';
 
       const syncIncomplete = () => el.classList.toggle('share-item--incomplete', !isComplete(item));
-      resiInput.addEventListener('input', (e) => { item.resi = e.target.value; syncIncomplete(); });
-      alamatInput.addEventListener('input', (e) => { item.alamat = e.target.value; syncIncomplete(); });
-      namaInput.addEventListener('input', (e) => { item.nama = e.target.value; syncIncomplete(); });
+      resiInput.addEventListener('input', (e) => { item.resi = e.target.value; syncIncomplete(); persistDraft(); });
+      alamatInput.addEventListener('input', (e) => { item.alamat = e.target.value; syncIncomplete(); persistDraft(); });
+      namaInput.addEventListener('input', (e) => { item.nama = e.target.value; syncIncomplete(); persistDraft(); });
       codInput.addEventListener('input', (e) => {
         const caretFromEnd = e.target.value.length - e.target.selectionStart;
         e.target.value = formatThousands(e.target.value);
         e.target.selectionStart = e.target.selectionEnd = e.target.value.length - caretFromEnd;
         item.cod = parseThousands(e.target.value);
         syncIncomplete();
+        persistDraft();
       });
-      hpInput.addEventListener('input', (e) => { item.hp = e.target.value; });
+      hpInput.addEventListener('input', (e) => { item.hp = e.target.value; persistDraft(); });
 
       listEl.appendChild(node);
     });
@@ -217,6 +227,7 @@ const SharePackageController = (() => {
     qs('#btn-import-all', container).disabled = items.length === 0;
     qs('#btn-clear-all', container).hidden = items.length === 0;
     qs('#share-empty', container).hidden = items.length > 0;
+    persistDraft(); // pengaman tambahan — pastikan render apa pun selalu ikut menyimpan
   }
 
   async function handleImportAll(container) {
@@ -252,6 +263,7 @@ const SharePackageController = (() => {
     }
     Toast.show(`${items.length} paket titipan berhasil ditambahkan ke Daftar Paket`, 'success');
     items = [];
+    await DB.setSetting(DRAFT_KEY, items); // hapus draft segera, tidak nunggu debounce, karena mau pindah halaman
     Router.goTo('deliveries');
   }
 
