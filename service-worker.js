@@ -10,7 +10,7 @@
      SyncEngine.fullSync() begitu koneksi & registrasi sync tersedia
 ===================================================================== */
 
-const CACHE_VERSION = 'courier-pro-v10'; // naikkan angka ini SETIAP KALI ada file yang di-cache (css/js/html) berubah
+const CACHE_VERSION = 'courier-pro-v11'; // naikkan angka ini SETIAP KALI ada file yang di-cache (css/js/html) berubah
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const PAGES_CACHE = `${CACHE_VERSION}-pages`;
 
@@ -24,7 +24,7 @@ const PRECACHE_URLS = [
   './css/components/toast.css', './css/components/modal.css', './css/components/form.css',
   './css/pages/login.css', './css/pages/dashboard.css', './css/pages/deliveries.css', './css/pages/package-detail.css',
   './css/pages/scanner.css', './css/pages/pickup-return.css', './css/pages/absensi.css', './css/pages/laporan.css',
-  './css/pages/dompet.css', './css/pages/setting.css', './css/pages/admin.css',
+  './css/pages/dompet.css', './css/pages/setting.css', './css/pages/admin.css', './css/pages/share-package.css',
   './js/config/constants.js', './js/config/supabase-config.js',
   './js/utils/dom.js', './js/utils/format.js', './js/utils/validation.js', './js/utils/image.js',
   './js/core/db.js', './js/core/state.js', './js/core/router.js', './js/core/sync-engine.js',
@@ -39,7 +39,7 @@ const PRECACHE_URLS = [
   './js/controllers/absensi.controller.js', './js/controllers/laporan.controller.js',
   './js/controllers/kinerja.controller.js', './js/controllers/dompet.controller.js',
   './js/controllers/transfer.controller.js', './js/controllers/notifikasi.controller.js',
-  './js/controllers/setting.controller.js', './js/controllers/admin.controller.js',
+  './js/controllers/setting.controller.js', './js/controllers/admin.controller.js', './js/controllers/share-package.controller.js',
   './js/app.js',
   './manifest.json',
 ];
@@ -48,7 +48,7 @@ const PAGE_HTML_URLS = [
   'login.html','dashboard.html','deliveries.html','package-detail.html','scanner.html','status-update.html',
   'pickup.html','pickup-scan.html','return.html','queue.html','absensi.html','laporan.html','kinerja.html',
   'dompet.html','transfer.html','notifikasi.html','setting.html','admin-dashboard.html','admin-kurir.html',
-  'admin-paket.html','admin-monitoring.html',
+  'admin-paket.html','admin-monitoring.html','share-package.html',
 ].map((f) => `./pages/${f}`);
 
 /* ===== INSTALL: precache app shell (toleran — satu file gagal tidak membatalkan semua) ===== */
