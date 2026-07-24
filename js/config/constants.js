@@ -32,7 +32,7 @@ const ROUTES = {
   'login':            { page: 'login.html',            title: 'Masuk',            header:false, bottomNav:false, auth:false },
   'dashboard':        { page: 'dashboard.html',         title: 'Beranda',          header:true,  bottomNav:true,  auth:true,  roles:['admin','supervisor','kurir'] },
   'deliveries':       { page: 'deliveries.html',        title: 'Daftar Paket',     header:true,  bottomNav:true,  auth:true,  roles:['admin','supervisor','kurir'] },
-  'package-detail':   { page: 'package-detail.html',    title: 'Detail Paket',     header:true,  bottomNav:false, auth:true,  roles:['admin','supervisor','kurir'] },
+  'package-detail':   { page: 'package-detail.html',    title: 'Detail Paket',     header:false, bottomNav:false, auth:true,  roles:['admin','supervisor','kurir'] },
   'scanner':          { page: 'scanner.html',           title: 'Pindai',           header:false, bottomNav:false, auth:true,  roles:['admin','supervisor','kurir'] },
   'status-update':    { page: 'status-update.html',     title: 'Update Status',    header:true,  bottomNav:false, auth:true,  roles:['kurir'] },
   'pickup':           { page: 'pickup.html',             title: 'Pickup',           header:true,  bottomNav:true,  auth:true,  roles:['admin','supervisor','kurir'] },
