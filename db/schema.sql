@@ -47,6 +47,9 @@ create table if not exists public.packages (
   return_reason text,
   gps jsonb,
   history jsonb default '[]',
+  alamat_rekomendasi text,
+  hub text,
+  unboxing_waived boolean default false,
   updated_at timestamptz default now(),
   created_at timestamptz default now()
 );
