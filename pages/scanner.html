@@ -38,4 +38,13 @@
     </label>
     <button type="submit" class="btn btn--outline btn--block">Cari Resi</button>
   </form>
+
+  <!-- Dialog: resi tidak ditemukan -->
+  <div id="not-found-scrim" class="bottom-sheet-scrim" hidden></div>
+  <div id="not-found-modal" class="modal" hidden role="alertdialog" aria-labelledby="not-found-title">
+    <span class="material-icon" id="not-found-icon" aria-hidden="true" style="font-size:40px;color:var(--color-danger);">error_outline</span>
+    <h2 id="not-found-title" style="margin-top:var(--space-3);">Data Tidak Ditemukan</h2>
+    <p style="margin:var(--space-2) 0 var(--space-4);color:var(--color-on-surface-variant);">Data paket tidak ditemukan. Silakan scan kembali.</p>
+    <button class="btn btn--primary btn--block" id="btn-not-found-ok" type="button">Scan Lagi</button>
+  </div>
 </section>

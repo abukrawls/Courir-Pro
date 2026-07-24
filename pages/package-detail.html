@@ -1,69 +1,162 @@
-<section class="page page-package-detail" data-page="package-detail" aria-labelledby="package-detail-title">
-  <h1 id="package-detail-title" class="visually-hidden">Detail Paket</h1>
+<section class="page page-order-info" data-page="package-detail" aria-labelledby="order-info-title">
+  <!-- Header custom (bukan header bersama app) -->
+  <header class="order-header">
+    <button class="icon-btn" id="btn-order-back" type="button" aria-label="Kembali">
+      <span class="material-icon" aria-hidden="true">arrow_back</span>
+    </button>
+    <h1 id="order-info-title" class="order-header__title">Order Info</h1>
+    <button class="icon-btn" id="btn-order-copy-resi" type="button" aria-label="Salin resi">
+      <span class="material-icon" aria-hidden="true">content_copy</span>
+    </button>
+    <button class="icon-btn" id="btn-order-refresh" type="button" aria-label="Muat ulang data">
+      <span class="material-icon" aria-hidden="true">refresh</span>
+    </button>
+  </header>
 
-  <!-- Kartu Ringkasan — gaya "Order Info" -->
-  <div class="detail-header card">
-    <div class="detail-header__badges-top">
-      <span class="badge badge--cod-check" id="detail-cod-check-badge" hidden>COD Cek Dulu</span>
-      <span class="badge badge--priority" id="detail-priority" hidden>
-        <span class="material-icon" aria-hidden="true">priority_high</span> Prioritas
-      </span>
-      <span class="status-pill" id="detail-status">-</span>
-    </div>
-    <div class="detail-header__top">
-      <span class="detail-resi mono" id="detail-resi">-</span>
-      <button class="icon-btn" id="btn-copy-resi" type="button" aria-label="Salin nomor resi">
-        <span class="material-icon" aria-hidden="true">content_copy</span>
+  <div id="order-info-loading" class="order-loading" hidden>
+    <div class="skeleton" style="height:140px;"></div>
+    <div class="skeleton" style="height:60px;"></div>
+    <div class="skeleton" style="height:100px;"></div>
+  </div>
+
+  <div id="order-info-content">
+    <!-- Card Informasi Paket -->
+    <div class="card order-card">
+      <div class="order-card__badges">
+        <span class="badge badge--cod-check" id="order-cod-check-badge" hidden>COD Cek Dulu</span>
+        <span class="status-pill" id="order-status">-</span>
+      </div>
+      <div class="order-resi-row">
+        <span class="order-resi mono" id="order-resi">-</span>
+        <button class="icon-btn" id="btn-copy-resi-inline" type="button" aria-label="Salin resi">
+          <span class="material-icon" aria-hidden="true">content_copy</span>
+        </button>
+      </div>
+      <div class="order-address-row">
+        <span class="material-icon order-address-row__pin" aria-hidden="true">location_on</span>
+        <p class="order-address-row__text" id="order-alamat">-</p>
+        <button class="icon-btn" id="btn-copy-alamat" type="button" aria-label="Salin alamat">
+          <span class="material-icon" aria-hidden="true">content_copy</span>
+        </button>
+      </div>
+      <button class="btn btn--outline btn--block" id="btn-open-maps" type="button">
+        <span class="material-icon" aria-hidden="true">map</span> Buka Google Maps
       </button>
     </div>
-    <div class="detail-address-row">
-      <span class="material-icon detail-address-row__pin" aria-hidden="true">location_on</span>
-      <p class="detail-address-row__text" id="detail-alamat-top">-</p>
+
+    <!-- Card Informasi COD -->
+    <div class="card order-cod-card">
+      <span class="order-cod-card__label">Jumlah COD</span>
+      <span class="order-cod-card__amount" id="order-cod-amount">-</span>
     </div>
-  </div>
 
-  <!-- Kartu Jumlah COD — terpisah, mengikuti gaya referensi -->
-  <div class="card detail-cod-card">
-    <span class="detail-cod-card__label">Jumlah COD</span>
-    <span class="detail-cod-card__amount" id="detail-cod-amount">-</span>
-  </div>
+    <!-- Card Alamat Rekomendasi -->
+    <div class="card order-card">
+      <div class="order-card__title-row">
+        <h2 class="order-card__title">Alamat Rekomendasi</h2>
+        <button class="icon-btn" id="btn-edit-alamat-rekomendasi" type="button" aria-label="Edit alamat rekomendasi">
+          <span class="material-icon" aria-hidden="true">edit</span>
+        </button>
+      </div>
+      <p class="order-card__hairline-text" id="order-alamat-rekomendasi">-</p>
+      <form id="form-edit-alamat-rekomendasi" class="order-edit-form" hidden>
+        <textarea id="input-alamat-rekomendasi" rows="2"></textarea>
+        <div class="order-edit-form__actions">
+          <button type="button" class="btn btn--outline" id="btn-cancel-edit-alamat">Batal</button>
+          <button type="submit" class="btn btn--primary">Simpan</button>
+        </div>
+      </form>
+    </div>
 
-  <div class="detail-section card">
-    <h2 class="detail-section__title">Penerima</h2>
-    <dl class="detail-list">
-      <div><dt>Nama</dt><dd id="detail-nama">-</dd></div>
-      <div><dt>Telepon</dt><dd id="detail-telepon">-
-        <a id="detail-call" href="tel:" class="icon-btn" aria-label="Telepon penerima"><span class="material-icon" aria-hidden="true">call</span></a>
-        <a id="detail-whatsapp" href="https://wa.me/" class="icon-btn" aria-label="WhatsApp penerima" target="_blank" rel="noopener"><span class="material-icon" aria-hidden="true">chat</span></a>
-      </dd></div>
-      <div><dt>Catatan</dt><dd id="detail-catatan">-</dd></div>
-    </dl>
-  </div>
+    <!-- Card Informasi Penerima -->
+    <div class="card order-card">
+      <h2 class="order-card__title">Informasi Penerima</h2>
+      <p class="order-receiver__name" id="order-nama">-</p>
+      <div class="order-receiver__phone-row">
+        <span id="order-hp">-</span>
+        <button class="icon-btn" id="btn-copy-hp" type="button" aria-label="Salin nomor HP">
+          <span class="material-icon" aria-hidden="true">content_copy</span>
+        </button>
+      </div>
+      <div class="order-receiver__actions">
+        <a id="order-call" href="tel:" class="btn btn--outline">
+          <span class="material-icon" aria-hidden="true">call</span> Telepon
+        </a>
+        <a id="order-whatsapp" href="https://wa.me/" class="btn btn--outline" target="_blank" rel="noopener">
+          <span class="material-icon" aria-hidden="true">chat</span> WhatsApp
+        </a>
+      </div>
+    </div>
 
-  <div class="detail-section card">
-    <h2 class="detail-section__title">Lokasi</h2>
-    <div id="detail-map" class="detail-map" role="img" aria-label="Peta lokasi tujuan"></div>
-    <p class="detail-coords" id="detail-coords">-</p>
-    <div class="detail-map__actions">
-      <button class="btn btn--outline" id="btn-navigate" type="button">
-        <span class="material-icon" aria-hidden="true">navigation</span> Navigasi
+    <!-- Card Informasi Hub -->
+    <div class="card order-card">
+      <h2 class="order-card__title">Informasi Hub</h2>
+      <dl class="order-info-list">
+        <div><dt>Assigned Hub</dt><dd id="order-hub">-</dd></div>
+        <div><dt>Kurir</dt><dd id="order-kurir">-</dd></div>
+        <div><dt>Tanggal Masuk</dt><dd id="order-tanggal-masuk">-</dd></div>
+        <div><dt>Tanggal Scan Terakhir</dt><dd id="order-tanggal-scan">-</dd></div>
+        <div><dt>Status Terakhir</dt><dd id="order-status-terakhir">-</dd></div>
+      </dl>
+    </div>
+
+    <!-- Card Riwayat Status -->
+    <div class="card order-card">
+      <h2 class="order-card__title">Riwayat Status</h2>
+      <ol id="order-history" class="timeline"></ol>
+    </div>
+
+    <!-- Card Foto Paket -->
+    <div class="card order-card">
+      <h2 class="order-card__title">Foto Paket</h2>
+      <div id="order-photos" class="photo-grid"></div>
+    </div>
+
+    <div class="order-share-row">
+      <button class="link-btn" id="btn-share-order" type="button">
+        <span class="material-icon" aria-hidden="true">share</span> Bagikan Order Info
       </button>
-      <span id="detail-distance">-</span>
-      <span id="detail-eta">-</span>
     </div>
   </div>
 
-  <div class="detail-section card">
-    <h2 class="detail-section__title">Foto Paket</h2>
-    <div id="detail-photos" class="photo-grid"></div>
+  <div id="order-not-found" class="order-not-found" hidden>
+    <span class="material-icon" aria-hidden="true">search_off</span>
+    <p>Paket tidak ditemukan.</p>
+    <button class="btn btn--outline" id="btn-back-not-found" type="button">Kembali</button>
   </div>
 
-  <div class="detail-section card">
-    <h2 class="detail-section__title">Riwayat Status</h2>
-    <ol id="detail-history" class="timeline"></ol>
+  <!-- Sticky bottom action buttons -->
+  <div class="order-actions" id="order-actions">
+    <button class="order-action-btn order-action-btn--primary" id="btn-action-unboxing" type="button">
+      <span class="material-icon" aria-hidden="true">videocam</span> Ambil Video Unboxing
+    </button>
+    <button class="order-action-btn" id="btn-action-no-unboxing" type="button">
+      <span class="material-icon" aria-hidden="true">no_photography</span> Tanpa Unboxing
+    </button>
+    <button class="order-action-btn" id="btn-action-hold" type="button">
+      <span class="material-icon" aria-hidden="true">pause_circle</span> On-Hold
+    </button>
+    <button class="order-action-btn" id="btn-action-navigate" type="button">
+      <span class="material-icon" aria-hidden="true">navigation</span> Navigasi
+    </button>
+    <button class="order-action-btn" id="btn-action-contact" type="button">
+      <span class="material-icon" aria-hidden="true">call</span> Hubungi
+    </button>
+    <button class="order-action-btn order-action-btn--success" id="btn-action-complete" type="button">
+      <span class="material-icon" aria-hidden="true">check_circle</span> Tandai Selesai
+    </button>
   </div>
 
-  <div class="detail-actions">
-    <button class="btn btn--primary btn--block" id="btn-update-status" type="button">Update Status</button>
+  <!-- Modal rekam video unboxing -->
+  <div id="unboxing-modal-scrim" class="bottom-sheet-scrim" hidden></div>
+  <div id="unboxing-modal" class="bottom-sheet" hidden>
+    <div class="bottom-sheet__handle"></div>
+    <h2>Rekam Video Unboxing</h2>
+    <video id="unboxing-video-preview" playsinline autoplay muted class="unboxing-video-preview"></video>
+    <div class="unboxing-modal__actions">
+      <button class="btn btn--primary btn--block" id="btn-start-record" type="button">Mulai Rekam</button>
+      <button class="btn btn--danger btn--block" id="btn-stop-record" type="button" hidden>Berhenti &amp; Simpan</button>
+      <button class="btn btn--outline btn--block" id="btn-cancel-unboxing" type="button">Batal</button>
+    </div>
   </div>
 </section>
