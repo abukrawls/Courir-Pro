@@ -16,7 +16,8 @@ const SyncEngine = (() => {
     packages: {
       kurirId: 'kurir_id', receiverName: 'receiver_name', receiverRelation: 'receiver_relation',
       receiverType: 'receiver_type', failReason: 'fail_reason', returnReason: 'return_reason',
-      updatedAt: 'updated_at', createdAt: 'created_at',
+      updatedAt: 'updated_at', createdAt: 'created_at', alamatRekomendasi: 'alamat_rekomendasi',
+      unboxingWaived: 'unboxing_waived',
     },
     pickup: { kurirId: 'kurir_id', pickedAt: 'picked_at', createdAt: 'created_at' },
     returns: { kurirId: 'kurir_id', createdAt: 'created_at' },
@@ -29,7 +30,8 @@ const SyncEngine = (() => {
     history: { fromUser: 'from_user', toUser: 'to_user' },
   };
   // Field lokal-only yang TIDAK PERNAH ada di tabel Supabase manapun — selalu dibuang.
-  const STRIP_ALWAYS = ['synced', 'titipan']; // 'titipan' bekas pendekatan lama, sekarang pakai status:'titipan'
+  // 'unboxingVideo' sengaja lokal saja (ukurannya besar, disimpan sebagai Blob di IndexedDB).
+  const STRIP_ALWAYS = ['synced', 'titipan', 'unboxingVideo', 'unboxingVideoAt'];
 
   function normalizePayload(table, payload) {
     const clone = { ...payload };
