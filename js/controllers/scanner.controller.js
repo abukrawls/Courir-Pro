@@ -39,19 +39,33 @@ const ScannerController = (() => {
       const resi = qs('#input-manual-resi', container).value.trim();
       if (resi) onDetect(container, resi);
     });
+
+    on(qs('#btn-not-found-ok', container), 'click', () => {
+      hide(qs('#not-found-scrim', container)); hide(qs('#not-found-modal', container));
+      qs('#input-manual-resi', container).value = '';
+      if (ScannerService.isSupported() && mode !== 'stopped') {
+        ScannerService.start(video, (code) => onDetect(container, code)).catch(() => {});
+      }
+    });
+  }
+
+  function showNotFound(container, resi) {
+    ScannerService.stop();
+    qs('#scanner-result', container).textContent = '';
+    show(qs('#not-found-scrim', container));
+    show(qs('#not-found-modal', container));
   }
 
   async function onDetect(container, resi) {
     const pkg = await PackageService.findByResi(resi);
-    const resultEl = qs('#scanner-result', container);
-    if (!pkg) { resultEl.textContent = `Resi ${resi} tidak ditemukan.`; return; }
+    if (!pkg) { showNotFound(container, resi); return; }
 
     if (mode === 'multi' || mode === 'continuous') {
       multiResults.push(pkg);
       qs('#scanner-multi-count', container).textContent = multiResults.length;
       const li = createEl('li', '', `${pkg.resi} — ${escapeHtml(pkg.nama)}`);
       qs('#scanner-multi-items', container).appendChild(li);
-      resultEl.textContent = `Ditambahkan: ${pkg.resi}`;
+      qs('#scanner-result', container).textContent = `Ditambahkan: ${pkg.resi}`;
     } else {
       ScannerService.stop();
       Router.goTo('package-detail', { id: pkg.id });
