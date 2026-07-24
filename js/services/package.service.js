@@ -27,7 +27,13 @@ const PackageService = (() => {
   }
 
   async function upsert(pkg) {
-    const record = { ...pkg, updatedAt: new Date().toISOString(), synced: false };
+    const existing = pkg.id ? await getById(pkg.id) : null;
+    const record = {
+      ...pkg,
+      createdAt: existing?.createdAt || pkg.createdAt || new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      synced: false,
+    };
     await DB.put(STORES.PACKAGES, record);
     await DB.queueSync({ store: 'packages', type: pkg.id ? 'update' : 'insert', payload: record });
     SyncEngine.pushQueue();
